@@ -1,0 +1,45 @@
+﻿1,S_su,kgCOD/m3,soluble  monosaccharides
+2,S_aa,kgCOD/m3,soluble  amino acids
+3,S_fa,kgCOD/m3,soluble  total LCFA
+4,S_va,kgCOD/m3,soluble  total valerate
+5,S_bu,kgCOD/m3,soluble  total butyrate
+6,S_pro,kgCOD/m3,soluble  total propionate
+7,S_ac,kgCOD/m3,soluble  acetate
+8,S_h2,kgCOD/m3,hydrogen gas
+9,S_ch4,kgCOD/m3,methane gas
+10,S_IC,kmoleC/m3,soluble inorganic carbon
+11,S_IN,kmoleC/m3,soluble inorganic nitrogen
+12,S_I ,kgCOD/m3,soluble inert materials
+13,X_c_biom,kgCOD/m3,particulate  of composites
+14,X_ch_biom,kgCOD/m3,particulate  of carbohydrate
+15,X_pr_biom,kgCOD/m3,particulate  of proteins
+16,X_li_biom,kgCOD/m3,particulate  of lipids
+17,X_su,kgCOD/m3,monosaccharides degraders (microorganisms)
+18,X_aa,kgCOD/m3,amino acids degraders (microorganisms)
+19,X_fa,kgCOD/m3,LCFA degraders (microorganisms)
+20,X_c4,kgCOD/m3,valerate and butyrate degraders (microorganisms)
+21,X_pro,kgCOD/m3,propionate degraders (microorganisms)
+22,X_ac,kgCOD/m3,acetate degraders (microorganisms)
+23,X_h2,kgCOD/m3,hydrogen degraders (microorganisms)
+24,X_I,kgCOD/m3,particulate  of inerts
+25,S_cation,kmole/m3,cations (strong base)
+26,S_anion,kmole/m3,anions (strong acid)
+27,S_hva,kgCOD/m3,soluble  valerate acid
+28,S_hbu,kgCOD/m3,soluble  butyratic acid
+29,S_hpro,kgCOD/m3,soluble  propionatic acid
+30,S_hac,kgCOD/m3,soluble  acetatic acid
+31,S_hco3,kmole/m3,soluble  bicarbonate
+32,S_nh3,kmole/m3,soluble  ammonia
+33,S_gas_h2,kgCOD/m3,soluble  hydrogen gas
+34,S_gas_ch4,kgCOD/m3,soluble  methane gas
+35,S_gas_co2,kmole/m3,soluble  carbon dioxide gas
+36,Q,m3/d,flow rate
+37,Temp,°C,temperature
+38,S_D1_D,unitless,Dummy
+39,S_D2_D,unitless,Dummy
+40,S_D3_D,unitless,Dummy
+41,X_D4_D,unitless,Dummy
+42,X_D5_D,unitless,Dummy
+43,S_H_ion,kmoleH+/m3,soluble  hydrogen ion
+44,S_co2,kmoleC/m3,soluble  carbon dioxide
+45,S_nh4,kmoleN/m3,soluble  ammonium
