@@ -1,0 +1,100 @@
+﻿1,f_sI_xc ,kgCOD/kg COD,fraction of composites (substrate) disintegrate to soluble inerts (product)
+2,f_xI_xc ,kgCOD/kg COD,fraction of composites (substrate) disintegrate to particulate inerts (product)
+3,f_ch_xc,kgCOD/kg COD,fraction of composites (substrate) disintegrate to carbohydrates (product)
+4,f_pr_xc ,kgCOD/kg COD,fraction of composites (substrate) disintegrate to proteins (product) 
+5,f_li_xc,kgCOD/kg COD,fraction of composites (substrate) disintegrate to lipids (product)
+6,N_xc,kmole N/(kg COD),nitrogen content of  composites
+7,N_I ,kmole N/(kg COD),nitrogen content of  inerts
+8,N_aa ,kmole N/(kg COD),nitrogen content of  amino acids
+9,C_xc ,kmole C/(kg COD),carbon content of  composites
+10,C_sI ,kmole C/(kg COD),carbon content of  soluble inerts
+11,C_ch ,kmole C/(kg COD),carbon content of  carbohydrates
+12,C_pr,kmole C/(kg COD),carbon content of  proteins
+13,C_li,kmole C/(kg COD),carbon content of  lipids
+14,C_xI,kmole C/(kg COD),carbon content of  particulate inerts
+15,C_su,kmole C/(kg COD),carbon content of  monosaccharides
+16,C_aa,kmole C/(kg COD),carbon content of  amino acids
+17,f_fa_li,kgCOD/kg COD,fraction of lipids (substrate) degrade to LCFA (product)
+18,C_fa,kmole C/(kg COD),carbon content of  total LCFA
+19,f_h2_su,kgCOD/kg COD,fraction of monosaccharides (substrate) degrade to hydrogen (product)
+20,f_bu_su,kgCOD/kg COD,fraction of monosaccharides (substrate) degrade to butyrate (product) 
+21,f_pro_su,kgCOD/kg COD,fraction of monosaccharides (substrate) degrade to propionate (product)
+22,f_ac_su,kgCOD/kg COD,fraction of monosaccharides (substrate) degrade to acetate (product)
+23,N_bac,kmole N/(kg COD),nitrogen content of synthesized into bacteria
+24,C_bu,kmole C/(kg COD),carbon content of  total butyrate
+25,C_pro,kmole C/(kg COD),carbon content of  total propionate
+26,C_ac,kmole C/(kg COD),carbon content of  total acetate
+27,C_bac,kmole C/(kg COD),carbon content of  synthesized into bacteria
+28,Y_su,kgCOD_X/kg COD_S,yield of biomass on monosaccharides (substrate)
+29,f_h2_aa,kgCOD/kg COD,fraction of amino acids (substrate) degrade to hydrogen (product)
+30,f_va_aa,kgCOD/kg COD,fraction of amino acids (substrate) degrade to valerate (product)
+31,f_bu_aa,kgCOD/kg COD,fraction of amino acids (substrate) degrade to butyrate (product) 
+32,f_pro_aa,kgCOD/kg COD,fraction of amino acids (substrate) degrade to propionate (product)
+33,f_ac_aa,kgCOD/kg COD,fraction of amino acids (substrate) degrade to acetate (product)
+34,C_va,kmole C/(kg COD),carbon content of  total valerate
+35,Y_aa,kgCOD_X/kg COD_S,yield of biomass on amino acids (substrate)
+36,Y_fa,kgCOD_X/kg COD_S,yield of biomass on total LCFA (substrate)
+37,Y_c4,kgCOD_X/kg COD_S,yield of biomass on butyrate (substrate)
+38,Y_pro,kgCOD_X/kg COD_S,yield of biomass on total propionate (substrate)
+39,C_ch4,kmole C/(kg COD),carbon content of methane
+40,Y_ac,kgCOD_X/kg COD_S,yield of biomass on total acetate (substrate)
+41,Y_h2,kgCOD_X/kg COD_S,yield of biomass on hydrogen (substrate)
+42,k_dis,1/d,disintegration rate
+43,k_hyd_ch,1/d,hydrolysis rate of carbohydrates (carbs to simple sugars)
+44,k_hyd_pr,1/d,hydrolysis rate of proteins
+45,k_hyd_li,1/d,hydrolysis rate of lipids
+46,K_S_IN,kgCOD_S/m3,half saturation value of inorganic nitrogen
+47,k_m_su,kgCOD_S/kgCOD_X/d,Monod maximum specific uptake rate for monosaccharides
+48,K_S_su,kgCOD_S/m3,half saturation value of monosaccharides
+49,pH_UL_acidacet,unitless,upper pH limit of acidic acetate
+50,pH_LL_acidacet,unitless,lower pH limit of acidic acetate
+51,k_m_aa,kgCOD_S/kgCOD_X/d,Monod maximum specific uptake rate for amino acids
+52,K_S_aa,kgCOD_S/m3,half saturation value of amino acids
+53,k_m_fa,kgCOD_S/kgCOD_X/d,Monod maximum specific uptake rate for total LCFA
+54,K_S_fa,kgCOD_S/m3,half saturation value of total LCFA
+55,K_Ih2_fa,kgCOD/m3,inhibition constant LCFA (substrate) degradation by hydrogen (inhibitor)
+56,k_m_c4,kgCOD_S/kgCOD_X/d,Monod maximum specific uptake rate for butyrate and valerate
+57,K_S_c4,kgCOD_S/m3,half saturation value of butyrate
+58,K_Ih2_c4,kgCOD/m3,inhibition constant for butyrate and valerate (substrate) degradation by hydrogen (inhibitor)
+59,k_m_pro,kgCOD_S/kgCOD_X/d,Monod maximum specific uptake rate for total propionate
+60,K_S_pro,kgCOD_S/m3,half saturation value of total propionate
+61,K_Ih2_pro,kgCOD/m3,inhibition constant for propionate (substrate) degradation by hydrogen (inhibitor)
+62,k_m_ac,kgCOD_S/kgCOD_X/d,Monod maximum specific uptake rate for total acetate
+63,K_S_ac,kgCOD_S/m3,half saturation value of total acetate
+64,K_I_nh3,kmol N/m3,inhibition constant by ammonia (inhibitor)
+65,pH_UL_ac ,unitless,upper pH limit for total acetate
+66,pH_LL_ac ,unitless,lower pH limit for total acetate
+67,k_m_h2,kgCOD_S/kgCOD_X/d,Monod maximum specific uptake rate for hydrogen
+68,K_S_h2,kgCOD_S/m3,half saturation value of hydrogen
+69,pH_UL_h2,unitless,upper pH limit for hydrogen
+70,pH_LL_h2,unitless,lower pH limit for hydrogen
+71,k_dec_Xsu,1/d,first order decay rate for the monosaccharide degraders
+72,k_dec_Xaa,1/d,first order decay rate for the amino acids degraders
+73,k_dec_Xfa,1/d,first order decay rate for the LCFA degraders
+74,k_dec_Xc4,1/d,first order decay rate for the butyrate and valerate
+75,k_dec_Xpro,1/d,first order decay rate for the propionate degraders
+76,k_dec_Xac,1/d,first order decay rate for the acetate degraders
+77,k_dec_Xh2,1/d,first order decay rate for the hydrogen degraders
+78,R,bar m3 kmole-1 K-1,gas law constant (8.314e-2)
+79,T_base,°C,base temperature
+80,T_op,°C,operating temperature
+81,pK_w_base,unitless,pKa of water
+82,pK_a_va_base,unitless,pKa of total valerate
+83,pK_a_bu_base,unitless,pKa of total butyrate
+84,pK_a_pro_base,unitless,pKa of total propionate
+85,pK_a_ac_base,unitless,pKa of total acetate
+86,pK_a_co2_base,unitless,pKa of carbon dioxide
+87,pK_a_IN_base,unitless,pKa of inorganic nitrogen
+88,pK_a_hco3_base,unitless,pKa of bicarbonate
+89,k_A_Bbu,1/M/d,acid base kinetic parameter for total butyrate
+90,k_A_Bpro,1/M/d,acid base kinetic parameter for total propionate
+91,k_A_Bac,1/M/d,acid base kinetic parameter for total acetate
+92,k_A_Bco2,1/M/d,acid base kinetic parameter for carbon dioxide
+93,k_A_BIN,1/M/d,acid base kinetic parameter for inhibitors
+94,P_atm,bar  ,atmospheric pressure
+95,kLa,1/d,gas-liquid transfer coefficient
+96,K_H_h2o_base,M(liq)/bar,Henry’s law coefficient of water
+97,K_H_co2_base,M(liq)/bar,Henry’s law coefficient of carbon dioxide
+98,K_H_ch4_base,M(liq)/bar,Henry’s law coefficient of methane
+99,K_H_h2_base,M(liq)/bar,Henry’s law coefficient of hydrogen
+100,k_P,m2/d/bar,proportional gain
