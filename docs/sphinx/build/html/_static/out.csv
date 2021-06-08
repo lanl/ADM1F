@@ -1,0 +1,67 @@
+﻿1,Ssu,mg COD/L,soluble  monosaccharides
+2,Saa,mg COD/L,soluble  amino acids
+3,Sfa,mg COD/L,soluble  total LCFA 
+4,Sva,mg COD/L,soluble  total valerate
+5,Sbu,mg COD/L,soluble  total butyrate
+6,Spro,mg COD/L,soluble  total propionate
+7,Sac,mg COD/L,soluble  total acetate
+8,Sh2,mg COD/L,soluble  hydrogen
+9,Sch4,mg COD/L,soluble  methane
+10,Sic,mg C/L,soluble  inorganic carbon
+11,Sin,mg N/L,soluble  inorganic nitrogen
+12,Si,mg COD/L,soluble  inerts
+13,Xc,mg COD/L,particulate  composites
+14,Xch,mg COD/L,particulate  carbohydrates
+15,Xpr,mg COD/L,particulate  proteins
+16,Xli,mg COD/L,particulate  lipids
+17,Xsu,mg COD/L,monosaccharides degraders (microorganisms)
+18,Xaa,mg COD/L,amino acids degraders (microorganisms)
+19,Xfa,mg COD/L,LCFA degraders (microorganisms)
+20,Xc4,mg COD/L,butyrate and valerate  degraders (microorganisms)
+21,Xpro,mg COD/L,propionate degraders (microorganisms)
+22,Xac,mg COD/L,acetate degraders (microorganisms)
+23,Xh2,mg COD/L,hydrogen degraders (microorganisms)
+24,Xi,mg COD/L,particulate  inerts
+25,scat+,mmol/L,cations
+26,san-,mmol/L,anions
+27,pH,unitless,a scale used to specify how acidic or basic a water-based solution is
+28,S_H+,mol/L,soluble hydrogen cation
+29,Sva-,mg COD/L,soluble total valerate anion
+30,Sbu-,mg COD/L,soluble total butyrate anion
+31,Spro-,mg COD/L,soluble total propionate anion
+32,Sac-,mg COD/L,soluble total acetate anion
+33,Shco3-,mmol C/L,soluble bicarbonate anion
+34,Sco2,mmol C/L,soluble carbon dioxide
+35,Snh3,mg N/L,soluble ammonia
+36,Snh4+,mg N/L,soluble ammonia cation (ammonium)
+37,"Sgas,h2",mg COD/L,soluble hydrogen gas
+38,"Sgas,ch4",mg COD/L,soluble methane gas
+39,"Sgas,co2",mmol C/L,soluble carbon dioxide gas
+40,"pgas,h2",atm,partial pressure of gas hydrogen
+41,"pgas,ch4",atm,partial pressure of gas methane
+42,"pgas,co2",atm,partial pressure of gas carbon dioxide
+43,"pgas,total",atm,partial pressure of gas all gases
+44,pgas ,m3/d,flow rate of gas
+45,Si,mg COD/L,soluble inert organics
+46,Ss ,mg COD/L,readily biodegradable substrate
+47,Xi,mg COD/L,particulate inert organics
+48,Xs ,mg COD/L,slowly biodegradable substrate
+49,Xd,mg COD/L,particulate  arising from biomass decay decay
+50,Snh,mg N/L,"ammonia and ammonium nitrogen, soluble  the ammonia produced during ammonification process from soluble organic nitrogen"
+51,Sns,mg N/L,"soluble biodegradable organic nitrogen generated during hydrolysis of particulate biodegradable organic nitrogen, suggesting it is the concentration of soluble organic hydrogen generated during hydrolysis"
+52,Xns,mg N/L,"particulate biodegradable organic nitrogen generated during hydrolysis of particulate biodegradable organic nitrogen, suggesting it is the concentration of soluble organic hydrogen generated during hydrolysis"
+53,Salk,mg C/L,charge balance
+54,TSS,mg TSS/L,total suspended solids
+55,VFA_C2toC5,mg COD/L,volatile fatty acid from C2 to C5
+56,mass_Sac,mg Hac/L,acetic acid
+57,PAratio,kg acetate/ kg acetate equivalent of propionate,acetate propionate ratio
+58,Alk,mg/L CaCO3,alkalinity
+59,NH3,mg N/L,ammonia
+60,NH4,mg N/L,ammonium
+61,LCFA,mgCOD_LCFA/L,long chain fatty acid
+62,percentch4,%,"biogas methane content, methane percentage output, percent by volume"
+63,energych4,%,"energy content of CH4 gas, methane energy output, methane converted to COD, percentage of input that’s converted to CH4 energy wise"
+64,efficiency,%,COD removal
+65,VFA/ALK,g acetate eq./g CaCO3,volatile fatty acid to alkalinity ratio
+66,ACN,kg COD/m3/d,"acetate capacity number, the ratio between the maximum acetate utilization rate and the average acetate production rate"
+67,SampleT,d,
