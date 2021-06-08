@@ -1,0 +1,28 @@
+﻿1,S_su_in,kgCOD/m3,soluble  input monosaccharides
+2,S_aa_in,kgCOD/m3,soluble  input amino acids
+3,S_fa_in,kgCOD/m3,soluble  input total LCFA
+4,S_va_in,kgCOD/m3,soluble  input total valerate
+5,S_bu_in,kgCOD/m3,soluble  input total butyrate
+6,S_pro_in,kgCOD/m3,soluble  input total propionate
+7,S_ac_in,kgCOD/m3,soluble input acetate
+8,S_h2_in,kgCOD/m3,hydrogen gas
+9,S_ch4_in,kgCOD/m3,methane gas
+10,S_IC_in,kmoleC/m3,soluble input inorganic carbon
+11,S_IN_in,kmoleC/m3,soluble input inorganic nitrogen
+12,S_I _in,kgCOD/m3,soluble input inert materials
+13,X_c_biom_in,kgCOD/m3,particulate input of composites
+14,X_ch_biom_in,kgCOD/m3,particulate input of carbohydrate
+15,X_pr_biom_in,kgCOD/m3,particulate input of proteins
+16,X_li_biom_in,kgCOD/m3,particulate input of lipids
+17,X_su_in,kgCOD/m3,monosaccharides degraders (microorganisms)
+18,X_aa_in,kgCOD/m3,amino acids degraders (microorganisms)
+19,X_fa_in,kgCOD/m3,LCFA degraders (microorganisms)
+20,X_c4_in,kgCOD/m3,valerate and butyrate degraders (microorganisms)
+21,X_pro_in,kgCOD/m3,propionate degraders (microorganisms)
+22,X_ac_in,kgCOD/m3,acetate degraders (microorganisms)
+23,X_h2_in,kgCOD/m3,hydrogen degraders (microorganisms)
+24,X_I_in,kgCOD/m3,particulate input of inerts
+25,S_cation_in,kmole/m3,input cations
+26,S_anion_in,kmole/m3,input anions
+27,Q,m3/d,flow rate
+28,Temp,°C,temperature

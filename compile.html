@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Compile ADM1F &mdash; ADM1F 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Inputs/Outputs" href="inouts.html" />
+    <link rel="prev" title="Anaerobic Digester Model #1 Fast (ADM1F)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ADM1F
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Guide:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compile ADM1F</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#running-adm1f">Running ADM1F</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#adm1f-srt">ADM1F SRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inouts.html">Inputs/Outputs</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ADM1F</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Compile ADM1F</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/compile.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="compile-adm1f">
+<h1>Compile ADM1F<a class="headerlink" href="#compile-adm1f" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p>ADM1F uses external numerical library package PETSc. First download PETSc:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd build; git clone -b release https://gitlab.com/petsc/petsc.git petsc
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd petsc; git checkout v3.14
+</pre></div>
+</div>
+</li>
+<li><p>Set <strong>PETSC_DIR</strong> and <strong>PETSC_ARCH</strong> in your environmental variables. We suggest to put these lines in your <cite>~/.bashrc</cite> or similar files (<cite>~/.bash_profile</cite> on Mac OS X). Once you add it into the bash file, run <cite>source  ~/.bash_profile</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PETSC_DIR=/path-to-my-ADM1F-folder/build/petsc
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export PETSC_ARCH=macx-debug
+</pre></div>
+</div>
+<p><strong>Make sure</strong> that ‘adolc-utils’ folder is in the ‘build’ folder.</p>
+</li>
+<li><p>Configure PETSC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./configure --download-mpich --with-cc=clang --with-fc=gfortran --with-debugging=0 --download-adolc PETSC_ARCH=macx-debug --with-cxx-dialect=C++11 --download-colpack
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>NOTE</strong>: that these are for Mac OSX. If you are installing on a linux machine, then replace <strong>clang</strong> with <strong>gcc</strong>. Also, sometimes turning off <cite>–with-fc=0</cite> could help with compilation. This step will take awhile.</p>
+<ol class="arabic" start="4">
+<li><p>If configuration goes well, you can then compile. This step will take awhile too.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make PETSC_DIR=/path-to-my-ADM1F-folder/build/petsc PETSC_ARCH=macx-debug all
+</pre></div>
+</div>
+</li>
+<li><p>After compilation, PETSc will show you how to test your installation (testing is optional).</p></li>
+<li><p>Navigate back to the <cite>build</cite> folder (<cite>cd ../</cite>) and compile adm1f:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make adm1f
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make
+</pre></div>
+</div>
+</li>
+<li><p>Set <strong>ADM1F_EXE</strong> in your environmental variable. Add this line in your <cite>~/.bashrc</cite> or similar files (<cite>~/.bash_profile</cite> on Mac OS X).  Once you add it into the bash file, do not forget to <cite>source  ~/.bash_profile</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ export ADM1F_EXE=path-to-my-ADM1F-folder/build/adm1f
+</pre></div>
+</div>
+</li>
+<li><p><strong>NOTE</strong>: There are two versions of the ADMF1: the original version  (adm1f.cxx), and the modified version of the model (adm1f_srt.cxx, see <a class="reference internal" href="#adm1f-srt"><span class="std std-ref">ADM1F SRT</span></a>).</p></li>
+</ol>
+</div>
+<div class="section" id="running-adm1f">
+<h1>Running ADM1F<a class="headerlink" href="#running-adm1f" title="Permalink to this headline">¶</a></h1>
+<ol class="arabic">
+<li><p>Make sure that <strong>ADM1F_EXE:</strong> is not empty (see step 7 from the previous section).:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo $ADM1F_EXE
+</pre></div>
+</div>
+</li>
+<li><p>Navigate to the <cite>simulations</cite> folder and run the model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ $ADM1F_EXE
+
+or using command-line options (see 4 and 5):
+
+$ $ADM1F_EXE -ts_monitor -steady
+</pre></div>
+</div>
+</li>
+<li><p>Note that adm1f will look for three files <cite>ic.dat</cite>, <cite>params.dat</cite>, and <cite>influent.dat</cite>, which contain the initial conditions (45 values), parameters (100 values), and influent values (28 values), see <a class="reference internal" href="inouts.html#inouts-label"><span class="std std-ref">Inputs/Outputs</span></a>.</p></li>
+<li><p>The command-line options are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>-Cat [val] - mass of Cat+ added [kmol/m3]</p></li>
+<li><p>-Vliq [val] - volume of liquid [m3]</p></li>
+<li><p>-Vgas [val] - volume of liquid [m3]</p></li>
+<li><p>-t_resx [val] -SRT adjustment: t_resx = SRT-HRT, [d] (works only for adm1f_srt.cxx)</p></li>
+<li><p>-params_file [filename] - specify params filename (default is params.dat)</p></li>
+<li><p>-ic_file [filename] - specify initial conditions filename (default is ic.dat)</p></li>
+<li><p>-influent_file [filename] - specify influent filename (default is influent.dat)</p></li>
+<li><p>-ts_monitor - shows the timestep and time information on screen</p></li>
+<li><p>-steady - run as steady state else runs as transient</p></li>
+<li><p>-debug - gives out more details on the screen</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>More command-line options can be found <a class="reference external" href="https://www.mcs.anl.gov/petsc/petsc-current/docs/manualpages/TS/TSSetFromOptions.html">here</a>.</p></li>
+</ol>
+</div>
+<div class="section" id="adm1f-srt">
+<span id="id1"></span><h1>ADM1F SRT<a class="headerlink" href="#adm1f-srt" title="Permalink to this headline">¶</a></h1>
+<p>The adm1f_srt.cxx version includes solid retention time (SRT) and other modifications described below. To switch to the SRT version of the model change ‘EXAMPLESC  = adm1f_srt.cxx’ , ‘OBJECTS_PF = adm1f_srt.o’, and ‘adm1f: adm1f_srt.o’ in the <cite>build/makefile</cite>. Then recompile the model (Compile ADM1F, step 6).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Includes a term (T_resx) in the mass balance to separate the solids retention time from hydraulic retention time.</p></li>
+<li><p>Uses the empirical Hill function that describes the inhibition of acetogenesis and hydrogenotrophic methanogenesis by acetic acid with the noncompetitive inhibition model <a class="footnote-reference brackets" href="#love99" id="id2">1</a> <a class="footnote-reference brackets" href="#osli85" id="id3">2</a>.</p></li>
+<li><p>Describes the inhibition of acetic acid on acetoclastic methanogenesis with the Haldane equation <a class="footnote-reference brackets" href="#hald30" id="id4">3</a> <a class="footnote-reference brackets" href="#andr68" id="id5">4</a>.</p></li>
+<li><p>Includes a adsorption-inhibition term describing the long-chain fatty acid <a class="footnote-reference brackets" href="#pala10" id="id6">6</a> (LCFA) inhibition of LCFA degradation and methanogenesis.</p></li>
+<li><p>Includes Arrhenius equations describing the effect of temperature on bioreaction kinetics <a class="footnote-reference brackets" href="#nova74" id="id7">5</a>.</p></li>
+<li><p>Includes a cation term to simulate the addition of NaOH for pH adjustment.</p></li>
+</ul>
+</div></blockquote>
+<p class="rubric">References</p>
+<dl class="footnote brackets">
+<dt class="label" id="love99"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Love, N. G., R. J. Smith, K. R. Gilmore, and C. W. Randall. 1999. Oxime inhibition of nitrification during treatment of an ammonia-containing industrial waste. Water Environment Research 71:418–26.</p>
+</dd>
+<dt class="label" id="osli85"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>Oslislo, A., and Z. Lewandowski. 1985. Inhibition of nitrification in the packed bed reactors by selected organic compounds. Water Research 19:423–26.</p>
+</dd>
+<dt class="label" id="hald30"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p>Haldane, J. B. S. 1930. Enzymes. London: Longmans.</p>
+</dd>
+<dt class="label" id="andr68"><span class="brackets"><a class="fn-backref" href="#id5">4</a></span></dt>
+<dd><p>Andrews, J. F. 1968. A mathematical model for the continuous culture of microorganisms utilizing inhibitory substrates. Biotechnology and Bioengineering 10:707–23.</p>
+</dd>
+<dt class="label" id="nova74"><span class="brackets"><a class="fn-backref" href="#id7">5</a></span></dt>
+<dd><p>Novak, J. T. 1974. Temperature-substrate interactions in biological treatment. Journal, Water Pollution Control Federation 46:1984–94.</p>
+</dd>
+<dt class="label" id="pala10"><span class="brackets"><a class="fn-backref" href="#id6">6</a></span></dt>
+<dd><p>Palatsi, J., Illa, J., Prenafeta-Boldú, F.X., Laureni, M., Fernandez, B., Angelidaki, I., Flotats. X. 2010. Long-chain fatty acids inhibition and adaptation process in anaerobic thermophilic digestion: Batch tests, microbial community structure and mathematical modelling. Bioresource Technology. 101, 7, 2243-2251.</p>
+</dd>
+</dl>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="inouts.html" class="btn btn-neutral float-right" title="Inputs/Outputs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Anaerobic Digester Model #1 Fast (ADM1F)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, The ADM1F Development Team (Satish Karra, Kuang Zhu, Wenjuan Zhang, and Elchin Jafarov).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
