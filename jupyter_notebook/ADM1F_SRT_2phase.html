@@ -1,0 +1,1551 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>ADM1F SRT: single tank and two-phase anaerobic dynamic membrane bioreactor &mdash; ADM1F 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "document", "processClass": "math|output_area"}})</script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="ADM1F: Execution time" href="execution_time.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ADM1F
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Guide:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../compile.html">Compile ADM1F</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compile.html#running-adm1f">Running ADM1F</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compile.html#adm1f-srt">ADM1F SRT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../inouts.html">Inputs/Outputs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="demos.html">Jupyter Notebook</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Steady_State_Run.html">ADM1F: Steady State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="execution_time.html">ADM1F: Execution time</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ADM1F SRT: single tank and two-phase anaerobic dynamic membrane bioreactor</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Single-tank-anaerobic-dynamic-membrane-bioreactor-(AnDMBR)">Single tank anaerobic dynamic membrane bioreactor (AnDMBR)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Two-Phase-anaerobic-dynamic-membrane-bioreactor">Two-Phase anaerobic dynamic membrane bioreactor</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ADM1F</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+        
+          <li><a href="demos.html">Jupyter Notebook</a> &raquo;</li>
+        
+      <li>ADM1F SRT: single tank and two-phase anaerobic dynamic membrane bioreactor</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/jupyter_notebook/ADM1F_SRT_2phase.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="ADM1F-SRT:-single-tank-and-two-phase-anaerobic-dynamic-membrane-bioreactor">
+<h1>ADM1F SRT: single tank and two-phase anaerobic dynamic membrane bioreactor<a class="headerlink" href="#ADM1F-SRT:-single-tank-and-two-phase-anaerobic-dynamic-membrane-bioreactor" title="Permalink to this headline">¶</a></h1>
+<p>This script is used to simulate a single tank suspended anaerobic dynamic membrane digester and a novel two-phase anaerobic dynamic membrane bioreator with separated SRT and HRT. In the two-phase reactor the effluent (model output) from the first phase dynamic membrane bioreactor is converted to the influent (model input) for the second-phase anaerobic dynamic membrane bioreactor as shown in the figure.</p>
+<p><strong>Note:</strong> Before running the ADM1F SRT simulations see intructions on how to compile <code class="docutils literal notranslate"><span class="pre">adm1f_srt.cxx</span></code> in the User Guide.</p>
+<p><strong>Mass balance equation with SRT:</strong></p>
+<p>The ADM1 and ADM1F solve the mass balance equation (i.e. mass_change = mass_in – mass_out + reaction). ADM1F_SRT version of the model includes solid retention time (<span class="math notranslate nohighlight">\(t_{res,X}\)</span>) as shown in the equation below.</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\, S_{\text{liq,i}}}{dt} = \frac{qS_{\text{in,i}}}{V_{\text{liq}}} - \frac{qS_{\text{liq,i}} }{V_{\text{liq}}}+ \sum_{j=1}^{12}\rho_{j} v_{i,j}\]</div>
+<div class="math notranslate nohighlight">
+\[\frac{d\, X_{\text{liq,i}}}{dt} = \frac{qX_{\text{in,i}}}{V_{\text{liq}}} - \frac{X_{\text{liq,i}}}{t_{\text{res,X}} + V_{\text{liq}}/q} + \sum_{j=13}^{24}\rho_{j} v_{i,j}\]</div>
+<p>Authors: Wenjuan Zhang, Elchin Jafarov, Kuang Zhu</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Load packages</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">adm1f_utils</span> <span class="k">as</span> <span class="nn">adm1fu</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># navigate to simulations folder</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;../../simulations&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Grab the names and unit of all the outputs</span>
+<span class="p">(</span><span class="n">output_name</span><span class="p">,</span><span class="n">output_unit</span><span class="p">)</span><span class="o">=</span><span class="n">adm1fu</span><span class="o">.</span><span class="n">get_output_names</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1">#check the path to the executable</span>
+<span class="o">!</span><span class="nb">echo</span> <span class="nv">$ADM1F_EXE</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+/Users/elchin/project/ADM1F_WM/build/adm1f
+</pre></div></div>
+</div>
+<div class="section" id="Single-tank-anaerobic-dynamic-membrane-bioreactor-(AnDMBR)">
+<h2>Single tank anaerobic dynamic membrane bioreactor (AnDMBR)<a class="headerlink" href="#Single-tank-anaerobic-dynamic-membrane-bioreactor-(AnDMBR)" title="Permalink to this headline">¶</a></h2>
+<p>To simulate the single tank AnDMBR that has separated SRT and HRT, We can call the function<code class="docutils literal notranslate"><span class="pre">reactor1</span></code> with different Q (flow-rate), Vliq (reactor volume), t_resx (SRT-HRT) values, the function will return the corresponding output</p>
+<p>Usage example: reactor1(Q=100, t_resx=30, Vliq=300)</p>
+<p><strong>(Unit)</strong> Q: [m3/d], t_resx: [day], Vliq: [m3]</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># testing different SRTs=[0,1,2,...9] on the one-phase reactor</span>
+<span class="n">resx_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+<span class="c1"># setup the matrix with columns correspoding SRTs and rows to outputs</span>
+<span class="n">output1_resx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">resx_list</span><span class="p">),</span> <span class="mi">67</span><span class="p">))</span>
+<span class="c1"># here we utilize back euler solver and adataptive time step</span>
+<span class="c1"># for more command options see &quot;User Guide/Running ADM1F/step 5&quot;</span>
+<span class="n">options</span><span class="o">=</span><span class="s1">&#39;-ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady&#39;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">resx_list</span><span class="p">)):</span>
+    <span class="n">output1_resx</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">adm1fu</span><span class="o">.</span><span class="n">reactor1</span><span class="p">(</span><span class="n">opt</span><span class="o">=</span><span class="n">options</span><span class="p">,</span> <span class="n">Vliq</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">t_resx</span><span class="o">=</span><span class="n">resx_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;output_1phase.csv&#39;</span><span class="p">,</span><span class="n">output1_resx</span><span class="p">,</span><span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.4e</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 0 -influent_file influent_cur.dat
+indicator-228.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 1 -influent_file influent_cur.dat
+indicator-307.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 2 -influent_file influent_cur.dat
+indicator-437.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 3 -influent_file influent_cur.dat
+indicator-563.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 4 -influent_file influent_cur.dat
+indicator-522.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 5 -influent_file influent_cur.dat
+indicator-517.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 6 -influent_file influent_cur.dat
+indicator-534.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 7 -influent_file influent_cur.dat
+indicator-542.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 8 -influent_file influent_cur.dat
+indicator-556.out
+Reactor run, phase-one:
+$ADM1F_EXE -ts_type beuler -ts_adapt_type basic -ts_max_snes_failures -1 -steady -Vliq 300 -t_resx 9 -influent_file influent_cur.dat
+indicator-576.out
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">df1_resx</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;output_1phase.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">df1_resx</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">output_name</span>
+<span class="n">df1_resx</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s2">&quot;T_resx&quot;</span><span class="p">,</span><span class="n">resx_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Relation between t_resx and output when Vliq=300m3, Q=600m3/d</strong></p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># check the results with increasing T_resx, we should expect decrease in Ssu</span>
+<span class="n">df1_resx</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>T_resx</th>
+      <th>Ssu</th>
+      <th>Saa</th>
+      <th>Sfa</th>
+      <th>Sva</th>
+      <th>Sbu</th>
+      <th>Spro</th>
+      <th>Sac</th>
+      <th>Sh2</th>
+      <th>Sch4</th>
+      <th>...</th>
+      <th>Alk</th>
+      <th>NH3</th>
+      <th>NH4</th>
+      <th>LCFA</th>
+      <th>percentch4</th>
+      <th>energych4</th>
+      <th>efficiency</th>
+      <th>VFA/ALK</th>
+      <th>ACN</th>
+      <th>sampleT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>2152.800</td>
+      <td>324.2700</td>
+      <td>7382.70</td>
+      <td>2381.700</td>
+      <td>3667.300</td>
+      <td>2542.700</td>
+      <td>8263.5</td>
+      <td>25.643000</td>
+      <td>-8.963700e-82</td>
+      <td>...</td>
+      <td>44957.0</td>
+      <td>0.053067</td>
+      <td>1074.00</td>
+      <td>7382.70</td>
+      <td>-1.133000e-81</td>
+      <td>83.808</td>
+      <td>3.9774</td>
+      <td>0.351490</td>
+      <td>-3.203400e-72</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>123.060</td>
+      <td>49.1670</td>
+      <td>7751.20</td>
+      <td>2574.400</td>
+      <td>4202.900</td>
+      <td>3244.500</td>
+      <td>9600.7</td>
+      <td>30.352000</td>
+      <td>3.859800e-12</td>
+      <td>...</td>
+      <td>59182.0</td>
+      <td>0.047701</td>
+      <td>1135.60</td>
+      <td>7751.20</td>
+      <td>1.599000e-12</td>
+      <td>100.630</td>
+      <td>-76.4800</td>
+      <td>0.310840</td>
+      <td>1.255000e-08</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>63.057</td>
+      <td>26.6380</td>
+      <td>7839.00</td>
+      <td>2610.000</td>
+      <td>4268.600</td>
+      <td>3305.000</td>
+      <td>9742.9</td>
+      <td>30.772000</td>
+      <td>1.129100e-09</td>
+      <td>...</td>
+      <td>61421.0</td>
+      <td>0.048208</td>
+      <td>1150.90</td>
+      <td>7839.00</td>
+      <td>4.600500e-10</td>
+      <td>102.210</td>
+      <td>-155.0200</td>
+      <td>0.304150</td>
+      <td>2.832600e-07</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>39.313</td>
+      <td>17.3450</td>
+      <td>908.19</td>
+      <td>41.129</td>
+      <td>54.118</td>
+      <td>53.411</td>
+      <td>3339.7</td>
+      <td>0.000662</td>
+      <td>2.574900e+02</td>
+      <td>...</td>
+      <td>16289.0</td>
+      <td>2.513100</td>
+      <td>963.03</td>
+      <td>908.19</td>
+      <td>5.579800e+01</td>
+      <td>209.370</td>
+      <td>-218.4400</td>
+      <td>0.200760</td>
+      <td>9.097200e+00</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>30.634</td>
+      <td>13.5750</td>
+      <td>457.19</td>
+      <td>30.592</td>
+      <td>39.989</td>
+      <td>35.895</td>
+      <td>3066.6</td>
+      <td>0.000515</td>
+      <td>2.653300e+02</td>
+      <td>...</td>
+      <td>18846.0</td>
+      <td>3.157300</td>
+      <td>963.70</td>
+      <td>457.19</td>
+      <td>5.623900e+01</td>
+      <td>214.510</td>
+      <td>-304.2100</td>
+      <td>0.157850</td>
+      <td>1.324200e+01</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5</td>
+      <td>25.261</td>
+      <td>11.2240</td>
+      <td>309.53</td>
+      <td>24.543</td>
+      <td>31.958</td>
+      <td>27.254</td>
+      <td>2856.4</td>
+      <td>0.000424</td>
+      <td>2.695900e+02</td>
+      <td>...</td>
+      <td>21320.0</td>
+      <td>3.693300</td>
+      <td>966.73</td>
+      <td>309.53</td>
+      <td>5.648800e+01</td>
+      <td>217.230</td>
+      <td>-390.0200</td>
+      <td>0.129290</td>
+      <td>1.778600e+01</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>6</td>
+      <td>21.606</td>
+      <td>9.6181</td>
+      <td>236.08</td>
+      <td>20.615</td>
+      <td>26.775</td>
+      <td>22.111</td>
+      <td>2685.8</td>
+      <td>0.000362</td>
+      <td>2.726300e+02</td>
+      <td>...</td>
+      <td>23721.0</td>
+      <td>4.147800</td>
+      <td>970.17</td>
+      <td>236.08</td>
+      <td>5.666900e+01</td>
+      <td>219.140</td>
+      <td>-475.6200</td>
+      <td>0.108900</td>
+      <td>2.278900e+01</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>18.960</td>
+      <td>8.4513</td>
+      <td>192.13</td>
+      <td>17.859</td>
+      <td>23.153</td>
+      <td>18.702</td>
+      <td>2543.7</td>
+      <td>0.000317</td>
+      <td>2.750200e+02</td>
+      <td>...</td>
+      <td>26050.0</td>
+      <td>4.540600</td>
+      <td>973.69</td>
+      <td>192.13</td>
+      <td>5.681200e+01</td>
+      <td>220.630</td>
+      <td>-560.8900</td>
+      <td>0.093693</td>
+      <td>2.825000e+01</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>8</td>
+      <td>16.955</td>
+      <td>7.5652</td>
+      <td>162.87</td>
+      <td>15.818</td>
+      <td>20.479</td>
+      <td>16.276</td>
+      <td>2423.2</td>
+      <td>0.000284</td>
+      <td>2.770000e+02</td>
+      <td>...</td>
+      <td>28311.0</td>
+      <td>4.885500</td>
+      <td>977.21</td>
+      <td>162.87</td>
+      <td>5.692900e+01</td>
+      <td>221.870</td>
+      <td>-645.8400</td>
+      <td>0.081984</td>
+      <td>3.416600e+01</td>
+      <td>0.5</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9</td>
+      <td>15.383</td>
+      <td>6.8691</td>
+      <td>141.96</td>
+      <td>14.244</td>
+      <td>18.422</td>
+      <td>14.462</td>
+      <td>2319.3</td>
+      <td>0.000257</td>
+      <td>2.786900e+02</td>
+      <td>...</td>
+      <td>30505.0</td>
+      <td>5.192300</td>
+      <td>980.68</td>
+      <td>141.96</td>
+      <td>5.702800e+01</td>
+      <td>222.920</td>
+      <td>-730.4900</td>
+      <td>0.072728</td>
+      <td>4.053400e+01</td>
+      <td>0.5</td>
+    </tr>
+  </tbody>
+</table>
+<p>10 rows × 68 columns</p>
+</div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># correlation between SRT and output</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">corr1</span><span class="o">=</span><span class="n">df1_resx</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr1</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">67</span><span class="p">:],</span> <span class="n">xticklabels</span><span class="o">=</span><span class="n">df1_resx</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">-</span><span class="mi">67</span><span class="p">:],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">df1_resx</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">diverging_palette</span><span class="p">(</span><span class="mi">220</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Correlation Matrix [t_resx/results]&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyter_notebook_ADM1F_SRT_2phase_11_0.png" src="../_images/jupyter_notebook_ADM1F_SRT_2phase_11_0.png" />
+</div>
+</div>
+<p><strong>Configurations</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 32%" />
+<col style="width: 16%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Vliq (m<span class="math notranslate nohighlight">\(^3\)</span>)</p></th>
+<th class="head"><p>t_resx (d)</p></th>
+<th class="head"><p>Q (m<span class="math notranslate nohighlight">\(^3\)</span>/d)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sherri’s</p></td>
+<td><p>3400</p></td>
+<td><p>0</p></td>
+<td><p>134</p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 1</p></td>
+<td><p>340</p></td>
+<td><p>1.5</p></td>
+<td><p>618</p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 2</p></td>
+<td><p>3400</p></td>
+<td><p>700</p></td>
+<td><p>618/—</p></td>
+</tr>
+</tbody>
+</table>
+<p>where t_resx = SRT - HRT</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">config_default</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Vliq&#39;</span><span class="p">:</span><span class="mi">3400</span><span class="p">,</span> <span class="s1">&#39;t_resx&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span><span class="mi">134</span><span class="p">}</span>
+<span class="n">config1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Vliq&#39;</span><span class="p">:</span><span class="mi">340</span><span class="p">,</span> <span class="s1">&#39;t_resx&#39;</span><span class="p">:</span><span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span><span class="mi">618</span><span class="p">}</span>
+<span class="n">config2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Vliq&#39;</span><span class="p">:</span><span class="mi">3400</span><span class="p">,</span> <span class="s1">&#39;t_resx&#39;</span><span class="p">:</span><span class="mi">700</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span><span class="mi">618</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Default-Configuration">
+<h3>Default Configuration<a class="headerlink" href="#Default-Configuration" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># output using default configuration</span>
+<span class="n">ls_default</span> <span class="o">=</span> <span class="n">adm1fu</span><span class="o">.</span><span class="n">reactor1</span><span class="p">(</span><span class="o">**</span><span class="n">config_default</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">df_default</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">ls_default</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">output_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Sherri</span><span class="se">\&#39;</span><span class="s1">s Configuration&#39;</span><span class="p">])</span>
+<span class="n">df_default</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Reactor run, phase-one:
+$ADM1F_EXE  -Vliq 3400 -t_resx 0 -influent_file influent_cur.dat
+indicator-034.out
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Ssu</th>
+      <th>Saa</th>
+      <th>Sfa</th>
+      <th>Sva</th>
+      <th>Sbu</th>
+      <th>Spro</th>
+      <th>Sac</th>
+      <th>Sh2</th>
+      <th>Sch4</th>
+      <th>Sic</th>
+      <th>...</th>
+      <th>Alk</th>
+      <th>NH3</th>
+      <th>NH4</th>
+      <th>LCFA</th>
+      <th>percentch4</th>
+      <th>energych4</th>
+      <th>efficiency</th>
+      <th>VFA/ALK</th>
+      <th>ACN</th>
+      <th>sampleT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Sherri's Configuration</th>
+      <td>7.17674</td>
+      <td>3.21796</td>
+      <td>54.9446</td>
+      <td>6.39778</td>
+      <td>8.23228</td>
+      <td>6.08339</td>
+      <td>1963.6</td>
+      <td>0.00012</td>
+      <td>48.3303</td>
+      <td>639.764</td>
+      <td>...</td>
+      <td>8438.52</td>
+      <td>9.32395</td>
+      <td>1026.69</td>
+      <td>54.9446</td>
+      <td>56.905</td>
+      <td>65.228</td>
+      <td>53.3712</td>
+      <td>0.220453</td>
+      <td>109.164</td>
+      <td>25.3731</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 67 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Configuration-1">
+<h3>Configuration 1<a class="headerlink" href="#Configuration-1" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># output using configuration 1</span>
+<span class="n">ls_config1</span> <span class="o">=</span> <span class="n">adm1fu</span><span class="o">.</span><span class="n">reactor1</span><span class="p">(</span><span class="o">**</span><span class="n">config1</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">df_config1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">ls_config1</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">output_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Phase 1 Configuration&#39;</span><span class="p">])</span>
+<span class="n">df_config1</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Reactor run, phase-one:
+$ADM1F_EXE  -Vliq 340 -t_resx 1.5 -influent_file influent_cur.dat
+indicator-051.out
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Ssu</th>
+      <th>Saa</th>
+      <th>Sfa</th>
+      <th>Sva</th>
+      <th>Sbu</th>
+      <th>Spro</th>
+      <th>Sac</th>
+      <th>Sh2</th>
+      <th>Sch4</th>
+      <th>Sic</th>
+      <th>...</th>
+      <th>Alk</th>
+      <th>NH3</th>
+      <th>NH4</th>
+      <th>LCFA</th>
+      <th>percentch4</th>
+      <th>energych4</th>
+      <th>efficiency</th>
+      <th>VFA/ALK</th>
+      <th>ACN</th>
+      <th>sampleT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Phase 1 Configuration</th>
+      <td>80.5616</td>
+      <td>33.4704</td>
+      <td>7808.75</td>
+      <td>2598.14</td>
+      <td>4246.87</td>
+      <td>3285.25</td>
+      <td>9696.05</td>
+      <td>28.5069</td>
+      <td>9.600970e-30</td>
+      <td>147.214</td>
+      <td>...</td>
+      <td>60316.4</td>
+      <td>0.048011</td>
+      <td>1145.6</td>
+      <td>7808.75</td>
+      <td>4.182560e-30</td>
+      <td>104.203</td>
+      <td>-104.737</td>
+      <td>0.308161</td>
+      <td>1.722550e-17</td>
+      <td>0.550162</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 67 columns</p>
+</div></div>
+</div>
+</div>
+<div class="section" id="Configuration-2">
+<h3>Configuration 2<a class="headerlink" href="#Configuration-2" title="Permalink to this headline">¶</a></h3>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># output using configuration 2</span>
+<span class="n">ls_config2</span> <span class="o">=</span> <span class="n">adm1fu</span><span class="o">.</span><span class="n">reactor1</span><span class="p">(</span><span class="o">**</span><span class="n">config2</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">df_config2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">ls_config2</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">output_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Phase 2 Configuration&#39;</span><span class="p">])</span>
+<span class="n">df_config2</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Reactor run, phase-one:
+$ADM1F_EXE  -Vliq 3400 -t_resx 700 -influent_file influent_cur.dat
+indicator-025.out
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Ssu</th>
+      <th>Saa</th>
+      <th>Sfa</th>
+      <th>Sva</th>
+      <th>Sbu</th>
+      <th>Spro</th>
+      <th>Sac</th>
+      <th>Sh2</th>
+      <th>Sch4</th>
+      <th>Sic</th>
+      <th>...</th>
+      <th>Alk</th>
+      <th>NH3</th>
+      <th>NH4</th>
+      <th>LCFA</th>
+      <th>percentch4</th>
+      <th>energych4</th>
+      <th>efficiency</th>
+      <th>VFA/ALK</th>
+      <th>ACN</th>
+      <th>sampleT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Phase 2 Configuration</th>
+      <td>2.70068</td>
+      <td>1.20723</td>
+      <td>19.0168</td>
+      <td>2.34856</td>
+      <td>3.01652</td>
+      <td>2.16597</td>
+      <td>1125.18</td>
+      <td>0.000045</td>
+      <td>75.1774</td>
+      <td>952.376</td>
+      <td>...</td>
+      <td>21574.7</td>
+      <td>14.7549</td>
+      <td>1186.64</td>
+      <td>19.0168</td>
+      <td>58.194</td>
+      <td>255.569</td>
+      <td>-899.833</td>
+      <td>0.049221</td>
+      <td>3302.96</td>
+      <td>5.50162</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 67 columns</p>
+</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Two-Phase-anaerobic-dynamic-membrane-bioreactor">
+<h2>Two-Phase anaerobic dynamic membrane bioreactor<a class="headerlink" href="#Two-Phase-anaerobic-dynamic-membrane-bioreactor" title="Permalink to this headline">¶</a></h2>
+<p>To simulate a novel two-phase AnDMBR, We can call the function <code class="docutils literal notranslate"><span class="pre">reactor2</span></code> with different Q1 (phase 1 flow rate), Q2 (phase 2 flow rate, normally equal to Q1), Vliq1 (phase 1 volume), Vliq2 (phase 2 volume), t_resx1 (SRT-HRT for phase 1), and t_resx2 (SRT-HRT for phase 1) values. In this function, the model output from phase 1 will be extracted and converted to the model input for phase 2. The function will return phase1 output and phase2 output</p>
+<p>Usage example: reactor2(Q1=100, t_resx1=30, t_resx2=100, Vliq1=300, Vliq2=3000)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Schematics of the two-phase reactor&#39;</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s1">&#39;../docs/_static/images/2phase_reactor.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Schematics of the two-phase reactor
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/jupyter_notebook_ADM1F_SRT_2phase_21_1.png" src="../_images/jupyter_notebook_ADM1F_SRT_2phase_21_1.png" />
+</div>
+</div>
+<div class="section" id="Config12">
+<h3>Config12<a class="headerlink" href="#Config12" title="Permalink to this headline">¶</a></h3>
+<p><strong>Configurations</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 32%" />
+<col style="width: 16%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Configuration</p></th>
+<th class="head"><p>Vliq (m<span class="math notranslate nohighlight">\(^3\)</span>)</p></th>
+<th class="head"><p>t_resx (d)</p></th>
+<th class="head"><p>Q (m<span class="math notranslate nohighlight">\(^3\)</span>/d)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sherri’s</p></td>
+<td><p>3400</p></td>
+<td><p>0</p></td>
+<td><p>134</p></td>
+</tr>
+<tr class="row-odd"><td><p>Phase 1</p></td>
+<td><p>340</p></td>
+<td><p>1.5</p></td>
+<td><p>618</p></td>
+</tr>
+<tr class="row-even"><td><p>Phase 2</p></td>
+<td><p>3400</p></td>
+<td><p>700</p></td>
+<td><p>618/—</p></td>
+</tr>
+</tbody>
+</table>
+<p>where t_resx = SRT - HRT</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># config12 = {&quot;Vliq1&quot;:340, &quot;Vliq2&quot;:3400, &quot;t_resx1&quot;:1.5, &quot;t_resx2&quot;:700, &quot;Q1&quot;:618, &quot;Q2&quot;:618}</span>
+<span class="n">config12</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Vliq1&quot;</span><span class="p">:</span><span class="mi">340</span><span class="p">,</span> <span class="s2">&quot;Vliq2&quot;</span><span class="p">:</span><span class="mi">3400</span><span class="p">,</span> <span class="s2">&quot;t_resx1&quot;</span><span class="p">:</span><span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;t_resx2&quot;</span><span class="p">:</span><span class="mi">700</span><span class="p">,</span> <span class="s2">&quot;Q1&quot;</span><span class="p">:</span><span class="mi">618</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="n">result_config12</span> <span class="o">=</span> <span class="n">adm1fu</span><span class="o">.</span><span class="n">reactor2</span><span class="p">(</span><span class="o">**</span><span class="n">config12</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Reactor run, phase-one:
+$ADM1F_EXE  -Vliq 340 -t_resx 1.5 -influent_file influent_cur.dat
+indicator-051.out
+Reactor run, phase-two:
+$ADM1F_EXE -Vliq 3400 -t_resx 700 -influent_file influent_cur.dat
+indicator-024.out
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># output using config12</span>
+<span class="n">result_config12</span> <span class="o">=</span> <span class="n">adm1fu</span><span class="o">.</span><span class="n">reactor2</span><span class="p">(</span><span class="o">**</span><span class="n">config12</span><span class="p">)</span>
+<span class="n">ls1_config12</span> <span class="o">=</span> <span class="n">result_config12</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">ls2_config12</span> <span class="o">=</span> <span class="n">result_config12</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">df_config12</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">ls1_config12</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="n">output_name</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Phase1&#39;</span><span class="p">])</span>
+<span class="n">df_config12</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;Phase2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ls2_config12</span>
+<span class="n">df_config12</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Reactor run, phase-one:
+$ADM1F_EXE  -Vliq 340 -t_resx 1.5 -influent_file influent_cur.dat
+indicator-051.out
+Reactor run, phase-two:
+$ADM1F_EXE -Vliq 3400 -t_resx 700 -influent_file influent_cur.dat
+indicator-024.out
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Ssu</th>
+      <th>Saa</th>
+      <th>Sfa</th>
+      <th>Sva</th>
+      <th>Sbu</th>
+      <th>Spro</th>
+      <th>Sac</th>
+      <th>Sh2</th>
+      <th>Sch4</th>
+      <th>Sic</th>
+      <th>...</th>
+      <th>Alk</th>
+      <th>NH3</th>
+      <th>NH4</th>
+      <th>LCFA</th>
+      <th>percentch4</th>
+      <th>energych4</th>
+      <th>efficiency</th>
+      <th>VFA/ALK</th>
+      <th>ACN</th>
+      <th>sampleT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Phase1</th>
+      <td>80.561600</td>
+      <td>33.470400</td>
+      <td>7808.7500</td>
+      <td>2598.14000</td>
+      <td>4246.87000</td>
+      <td>3285.25000</td>
+      <td>9696.05</td>
+      <td>28.506900</td>
+      <td>9.371060e-31</td>
+      <td>147.214</td>
+      <td>...</td>
+      <td>60316.4</td>
+      <td>0.048011</td>
+      <td>1145.6</td>
+      <td>7808.7500</td>
+      <td>4.082390e-31</td>
+      <td>104.203</td>
+      <td>-104.737</td>
+      <td>0.308161</td>
+      <td>5.381270e-18</td>
+      <td>0.550162</td>
+    </tr>
+    <tr>
+      <th>Phase2</th>
+      <td>0.355681</td>
+      <td>0.132504</td>
+      <td>19.2757</td>
+      <td>2.37729</td>
+      <td>3.05196</td>
+      <td>2.19399</td>
+      <td>1248.96</td>
+      <td>0.000046</td>
+      <td>7.114040e+01</td>
+      <td>867.356</td>
+      <td>...</td>
+      <td>17101.8</td>
+      <td>15.289200</td>
+      <td>1139.4</td>
+      <td>19.2757</td>
+      <td>6.198330e+01</td>
+      <td>192.277</td>
+      <td>-590.307</td>
+      <td>0.068884</td>
+      <td>-2.807000e+01</td>
+      <td>6.241160</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 67 columns</p>
+</div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="execution_time.html" class="btn btn-neutral float-left" title="ADM1F: Execution time" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, The ADM1F Development Team (Elchin Jafarov, Satish Karra, Kuang Zhu, Wenjuan Zhang, and Kurt Solander).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

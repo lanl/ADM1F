@@ -1,0 +1,16 @@
+Script of PH control
+====================
+
+This is the content from **ph.py**
+
+.. literalinclude:: ../ph.py
+    :linenos:
+    :language: python
+
+
+**Summary**
+
+* ``getlastoutput()``: return the name of the last output file
+* ``removeoldoutputs()``: remove all the output files
+* ``ph(cat)``: return `out, cat` where out is the predicted PH value when the cation concentration is `cat`.
+* ``ph_control(target,init_sample,num_cat,infl,params,ic)``: return several most possible cation values that will lead to the target PH
