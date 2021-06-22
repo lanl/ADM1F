@@ -6,6 +6,15 @@ Anaerobic digestion (AD) process converts organic wastes into biogas. Biogas can
 
 The C++ version of the model is computationally more efficient than its Matlab/Simulink predecessor. We called this version of the model Anaerobic Digestion Model 1 Fast (ADM1F).
 
-### ADM1F_SRT (solid retention time) version
+### ADM1F_SRT (Solid Retention Time) version
 
 The modified version of the ADM1F includes SRT and other modifications described in the documentation.
+
+#### Acknowledgements
+
+The research was supported by the U.S. Department of Energy, Office of Energy Efficiency and Renewable Energy, Bioenergy Technologies Office, under contract DE-AC02-06CH11357.
+
+#### Join Our Slack Channel
+
+If you have any questions or would like to be a developer, feel free to join our [slack channel](http://fastadmmodeling.slack.com).
+
