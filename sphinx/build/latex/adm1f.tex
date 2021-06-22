@@ -192,7 +192,7 @@
 
 
 \title{Anaerobic Digester Model \#1 Fast (ADM1F)}
-\date{Jun 21, 2021}
+\date{Jun 22, 2021}
 \release{0.1}
 \author{Elchin Jafarov, Satish Karra,\and Kuang Zhu,\and Wenjuan Zhang,\and and Kurt Solander}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -3744,14 +3744,11 @@ d
 
 \chapter{Examples}
 \label{\detokenize{examples:examples}}\label{\detokenize{examples::doc}}
-
-\section{Jupyter Notebook}
-\label{\detokenize{jupyter_notebook/demos:jupyter-notebook}}\label{\detokenize{jupyter_notebook/demos::doc}}
 \sphinxAtStartPar
-All demo cases are documented in jupyter notebooks
+All demo cases are documented in jupyter notebooks.
 
 
-\subsection{ADM1F: Steady State}
+\section{ADM1F: Steady State}
 \label{\detokenize{jupyter_notebook/Steady_State_Run:ADM1F:-Steady-State}}\label{\detokenize{jupyter_notebook/Steady_State_Run::doc}}
 \sphinxAtStartPar
 Here we run the steady state case and comparing it with the Matlab results. Make sure to compile \sphinxcode{\sphinxupquote{build/adm1f.cxx}}.
@@ -3760,7 +3757,7 @@ Here we run the steady state case and comparing it with the Matlab results. Make
 Author: Elchin Jafarov
 
 
-\subsubsection{1. Steady State Run}
+\subsection{1. Steady State Run}
 \label{\detokenize{jupyter_notebook/Steady_State_Run:1.-Steady-State-Run}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -3872,7 +3869,7 @@ Done!
 If the run is successful then \sphinxcode{\sphinxupquote{indicator\sphinxhyphen{}***.out}} should be saved in the \sphinxcode{\sphinxupquote{simulations}} folder. Here take the last time step saved in the last indicator file (\sphinxcode{\sphinxupquote{indicator\sphinxhyphen{}062.out}}). The accending numeration of the output files corresponds to the time iterations taken towards the steady state condition.
 
 
-\subsubsection{2. Comparison of the ADM1F (C++) with ADM1 (Matlab)}
+\subsection{2. Comparison of the ADM1F (C++) with ADM1 (Matlab)}
 \label{\detokenize{jupyter_notebook/Steady_State_Run:2.-Comparison-of-the-ADM1F-(C++)-with-ADM1-(Matlab)}}
 \sphinxAtStartPar
 The ADM1F runs much faster than the corresponding Matlab version. The main difference between C++ and the Matlab versions of the model is that ADM1F uses optimized solvers from the PETCS package to solve the corresponding mass balance equations. The ADM1F allows usage of the diffrent solvers. The ADM1(Matlab) is using ode45 nonstiff differential equation solver that cannot be changed. Below we benchmark ADM1F(C++) outputs with the ADM1(Matlab).
@@ -3980,7 +3977,7 @@ R2 Score: 1.0
 }
 
 
-\subsection{ADM1F: Execution time}
+\section{ADM1F: Execution time}
 \label{\detokenize{jupyter_notebook/execution_time:ADM1F:-Execution-time}}\label{\detokenize{jupyter_notebook/execution_time::doc}}
 \sphinxAtStartPar
 Here we calculate the execution time for a sample of size 100. We perturb a certain number of elements in one of the inputs files (e.g. influent.dat, ic.dat, params.dat) by some ‘percent’ value. We sample perturbed elements 100 times in a non\sphinxhyphen{}repeatable fashion using latin hypercube ‘lhs’ or ‘uniform’ sampling methods. Then we calculate the execution time 100 times. Note, if you do not have any of the packages used in this script, use \sphinxcode{\sphinxupquote{pip install package\_name}}.
@@ -4245,7 +4242,7 @@ max time: 0.34 seconds
 }
 
 
-\subsection{ADM1F SRT: single tank and two\sphinxhyphen{}phase anaerobic dynamic membrane bioreactor}
+\section{ADM1F SRT: single tank and two\sphinxhyphen{}phase anaerobic dynamic membrane bioreactor}
 \label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:ADM1F-SRT:-single-tank-and-two-phase-anaerobic-dynamic-membrane-bioreactor}}\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase::doc}}
 \sphinxAtStartPar
 This script is used to simulate a single tank suspended anaerobic dynamic membrane digester and a novel two\sphinxhyphen{}phase anaerobic dynamic membrane bioreator with separated SRT and HRT. In the two\sphinxhyphen{}phase reactor the effluent (model output) from the first phase dynamic membrane bioreactor is converted to the influent (model input) for the second\sphinxhyphen{}phase anaerobic dynamic membrane bioreactor as shown in the figure.
@@ -4322,7 +4319,7 @@ Authors: Wenjuan Zhang, Elchin Jafarov, Kuang Zhu
 }
 
 
-\subsubsection{Single tank anaerobic dynamic membrane bioreactor (AnDMBR)}
+\subsection{Single tank anaerobic dynamic membrane bioreactor (AnDMBR)}
 \label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Single-tank-anaerobic-dynamic-membrane-bioreactor-(AnDMBR)}}
 \sphinxAtStartPar
 To simulate the single tank AnDMBR that has separated SRT and HRT, We can call the function\sphinxcode{\sphinxupquote{reactor1}} with different Q (flow\sphinxhyphen{}rate), Vliq (reactor volume), t\_resx (SRT\sphinxhyphen{}HRT) values, the function will return the corresponding output
@@ -4567,7 +4564,7 @@ where t\_resx = SRT \sphinxhyphen{} HRT
 }
 
 
-\paragraph{Default Configuration}
+\subsubsection{Default Configuration}
 \label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Default-Configuration}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -4621,7 +4618,7 @@ Sherri's Configuration     53.3712  0.220453  109.164  25.3731
 }
 
 
-\paragraph{Configuration 1}
+\subsubsection{Configuration 1}
 \label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Configuration-1}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -4675,7 +4672,7 @@ Phase 1 Configuration    -104.737  0.308161  1.722550e-17  0.550162
 }
 
 
-\paragraph{Configuration 2}
+\subsubsection{Configuration 2}
 \label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Configuration-2}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -4729,7 +4726,7 @@ Phase 2 Configuration    -899.833  0.049221  3302.96  5.50162
 }
 
 
-\subsubsection{Two\sphinxhyphen{}Phase anaerobic dynamic membrane bioreactor}
+\subsection{Two\sphinxhyphen{}Phase anaerobic dynamic membrane bioreactor}
 \label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Two-Phase-anaerobic-dynamic-membrane-bioreactor}}
 \sphinxAtStartPar
 To simulate a novel two\sphinxhyphen{}phase AnDMBR, We can call the function \sphinxcode{\sphinxupquote{reactor2}} with different Q1 (phase 1 flow rate), Q2 (phase 2 flow rate, normally equal to Q1), Vliq1 (phase 1 volume), Vliq2 (phase 2 volume), t\_resx1 (SRT\sphinxhyphen{}HRT for phase 1), and t\_resx2 (SRT\sphinxhyphen{}HRT for phase 1) values. In this function, the model output from phase 1 will be extracted and converted to the model input for phase 2. The function will return phase1 output and phase2 output
@@ -4772,7 +4769,7 @@ Schematics of the two-phase reactor
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{Config12}
+\subsubsection{Config12}
 \label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Config12}}
 \sphinxAtStartPar
 \sphinxstylestrong{Configurations}
@@ -4948,7 +4945,7 @@ Phase2 -2.807000e+01  6.241160
 }
 
 
-\subsection{ADM1F\_SRT: Input/output sensitivity}
+\section{ADM1F\_SRT: Input/output sensitivity}
 \label{\detokenize{jupyter_notebook/io_sensitivity_analysis:ADM1F_SRT:-Input/output-sensitivity}}\label{\detokenize{jupyter_notebook/io_sensitivity_analysis::doc}}
 \sphinxAtStartPar
 Here we explore the relationships between inputs and outputs. In the \sphinxcode{\sphinxupquote{ADM1F: Execution time}} example we showed how to run the models with the perturbed input values from \sphinxcode{\sphinxupquote{influent.dat}} and \sphinxcode{\sphinxupquote{param.dat}} files. Assuming that you run the \sphinxcode{\sphinxupquote{ADM1F: Execution time}} example and produced the \sphinxcode{\sphinxupquote{outputs\_influent.csv}} and \sphinxcode{\sphinxupquote{outputs\_params.csv}} files, we use these outputs here to study the relationship between influents and outputs, and params and outputs. If not just uncomment lines 5 and 18 and
@@ -4971,7 +4968,7 @@ Authors: Wenjuan Zhang and Elchin Jafarov
 }
 
 
-\subsubsection{1. Influent/Output sensitivity}
+\subsection{1. Influent/Output sensitivity}
 \label{\detokenize{jupyter_notebook/io_sensitivity_analysis:1.-Influent/Output-sensitivity}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -5326,7 +5323,7 @@ Let’s merge \sphinxcode{\sphinxupquote{ph}} values from the results with the i
 \end{nbsphinxfancyoutput}
 
 
-\subsubsection{2. Params/Output sensitivity}
+\subsection{2. Params/Output sensitivity}
 \label{\detokenize{jupyter_notebook/io_sensitivity_analysis:2.-Params/Output-sensitivity}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -5541,7 +5538,7 @@ Number of elements participated in the sampling: 92
 }
 
 
-\subsection{ADM1F SRT: Synthetic Model\sphinxhyphen{}Data Calibration}
+\section{ADM1F SRT: Synthetic Model\sphinxhyphen{}Data Calibration}
 \label{\detokenize{jupyter_notebook/parameter-calibration:ADM1F-SRT:-Synthetic-Model-Data-Calibration}}\label{\detokenize{jupyter_notebook/parameter-calibration::doc}}
 \sphinxAtStartPar
 Authors: Wenjuan Zhang and Elchin Jafarov
@@ -5583,7 +5580,7 @@ To use jupyter notebook to display Julia, add JuliaHub, check this page \sphinxu
 \end{enumerate}
 
 
-\subsubsection{1. Sensitivity of the model output to parameter changes}
+\subsection{1. Sensitivity of the model output to parameter changes}
 \label{\detokenize{jupyter_notebook/parameter-calibration:1.-Sensitivity-of-the-model-output-to-parameter-changes}}
 \sphinxAtStartPar
 Before starting model clibration we need to make sure that results are senstive to the parameter changes.
@@ -5974,7 +5971,7 @@ OrderedCollections.OrderedDict\{String,Any\}("init" => 0.045,"max" => 0.04559999
 “o2” =\textgreater{} 145.362 “o3” =\textgreater{} 48.578 “o1” =\textgreater{} 363.333 “o4” =\textgreater{} 35.1163 “o5” =\textgreater{} 11.6628 “o6” =\textgreater{} 6.51573 “o7” =\textgreater{} 3.04116e\sphinxhyphen{}312
 
 
-\subsubsection{2. Model Calibration}
+\subsection{2. Model Calibration}
 \label{\detokenize{jupyter_notebook/parameter-calibration:2.-Model-Calibration}}
 \sphinxAtStartPar
 Once the sensitivity of the model outputs to changes in model parameters are established we can start the calibration. The elaborated sensitivy analysis is required, for an in\sphinxhyphen{}depth model calibration.
@@ -6128,8 +6125,8 @@ p54=0.031
 }
 
 
-\subsection{PH Control}
-\label{\detokenize{jupyter_notebook/phcontrol:ph-control}}\label{\detokenize{jupyter_notebook/phcontrol::doc}}
+\section{PH Control}
+\label{\detokenize{phcontrol:ph-control}}\label{\detokenize{phcontrol::doc}}
 \sphinxAtStartPar
 The two\sphinxhyphen{}phase AnDMBR simulates a rumen environment to enhance the rates of hydrolysis and acidogenesis. A large amount of volatile fatty acids that decreases PH is produced, which could lead to digester failure. In real\sphinxhyphen{}life conditions, sodium hydroxide is added into the first\sphinxhyphen{}phase reactor. This maintains a PH around 6.3 and ensures optimal microbial activities, which is similar to the rumen reactor of a cow. Similarly, the PH in the second\sphinxhyphen{}phase methane\sphinxhyphen{}producing AnDMBR is maintained at 7.2 to provide optimal reactor functionality. In the AnDMBR model, we retain the appropriate levels of PH within each reactor phase by adding corresponding cation mass, which is estimated via the data consistent inversion method %
 \begin{footnote}[1]\sphinxAtStartFootnote
@@ -6169,8 +6166,8 @@ Assumptions are not discussed here for the ease of explanation.
 \end{footnote} guarantees that when a sample of the updated pdf of cation is put in the model input, there is a probability of 99.73\% that the predicted PH will be within three standard deviations around \(\mu^*\) (grey area). It is straightforward to get the conclusion  that the smaller \(\sigma\) we choose in \(N(\mu^*, \sigma^2)\), the more accurate the PH will be.
 
 
-\subsubsection{PH Control for One\sphinxhyphen{}Phase and Two\sphinxhyphen{}Phase Reactor}
-\label{\detokenize{jupyter_notebook/ph12:ph-control-for-one-phase-and-two-phase-reactor}}\label{\detokenize{jupyter_notebook/ph12::doc}}
+\subsection{PH Control for One\sphinxhyphen{}Phase and Two\sphinxhyphen{}Phase Reactor}
+\label{\detokenize{ph12:ph-control-for-one-phase-and-two-phase-reactor}}\label{\detokenize{ph12::doc}}
 \sphinxAtStartPar
 Phase 1 of the digester represents the condition where membrane blocks the solid materials that are part of the effluent. Here we setup the corresponding SRT to define the time required for the solids to dilute in phase 1. As mentioned above, during this phase VFAs are produced, which reduces the ph of the digester.
 
@@ -6192,10 +6189,10 @@ The idea can also be explained in the following flow chart
 Similar idea can then be applied to the two\sphinxhyphen{}phase reactor. We can configure the two\sphinxhyphen{}phase reactor where volume, flow rate, t\_resx (t\_resx = SRT\sphinxhyphen{}HRT) of each phase can be set manually to simulate the real reactor. The implementations in both phase 1 and 2 are similar to the above implementation in the one\sphinxhyphen{}phase reactor, the only difference is that the output of phase 1 is now the input of phase 2.
 
 \sphinxAtStartPar
-In the {\hyperref[\detokenize{jupyter_notebook/ph-control::doc}]{\sphinxcrossref{\DUrole{doc}{Ipython notebook}}}}, \sphinxcode{\sphinxupquote{reactor\_cat(target\_1, target\_2, **kwargs)}} function is used to calculate the corresponding cation for each phase in order to control the PH level for each phase. Note that the target PH for phase 1 and 2 (target\_1, target\_2) can be set different when using this function under the corresponding configurations.
+In the {\hyperref[\detokenize{jupyter_notebook/ph-control::doc}]{\sphinxcrossref{\DUrole{doc}{Ipython notebook}}}}, \sphinxcode{\sphinxupquote{reactor2\_cat(target\_1, target\_2, **kwargs)}} function is used to calculate the corresponding cation for each phase in order to control the PH level for each phase. Note that the target PH for phase 1 and 2 (target\_1, target\_2) can be set different when using this function under the corresponding configurations.
 
 
-\subsubsection{ADM1F\_SRT: Ph control method}
+\subsection{ADM1F\_SRT: Ph control method}
 \label{\detokenize{jupyter_notebook/ph-control:ADM1F_SRT:-Ph-control-method}}\label{\detokenize{jupyter_notebook/ph-control::doc}}
 \sphinxAtStartPar
 The \sphinxcode{\sphinxupquote{ph control}} method was developed by Wenjuan Zhang and uses Data Consistent Inversion Method.
@@ -6217,7 +6214,7 @@ Authors: Wenjuan Zhang and Elchin Jafarov
 }
 
 
-\paragraph{1. Relation between cation and PH}
+\subsubsection{1. Relation between cation and PH}
 \label{\detokenize{jupyter_notebook/ph-control:1.-Relation-between-cation-and-PH}}
 \sphinxAtStartPar
 Here we explore the cation/ph relationships using diffrerent configurations. Note, based in the results will be different based on the ADM1F code version (i.e. original or SRT).
@@ -6439,7 +6436,7 @@ where t\_resx = SRT \sphinxhyphen{} HRT
 \end{nbsphinxfancyoutput}
 
 
-\paragraph{2. PH: one\sphinxhyphen{}phase reactor}
+\subsubsection{2. PH: one\sphinxhyphen{}phase reactor}
 \label{\detokenize{jupyter_notebook/ph-control:2.-PH:-one-phase-reactor}}
 {
 \sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
@@ -6753,7 +6750,7 @@ Reactor run, ph phase-one:
 }
 
 
-\paragraph{3. PH: two\sphinxhyphen{}phase reactor}
+\subsubsection{3. PH: two\sphinxhyphen{}phase reactor}
 \label{\detokenize{jupyter_notebook/ph-control:3.-PH:-two-phase-reactor}}
 \sphinxAtStartPar
 \sphinxstylestrong{PH control for both phase 1 and phase 2}
