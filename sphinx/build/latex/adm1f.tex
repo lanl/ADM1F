@@ -191,10 +191,10 @@
 
 
 
-\title{ADM1F}
-\date{Jun 08, 2021}
+\title{Anaerobic Digester Model \#1 Fast (ADM1F)}
+\date{Jun 21, 2021}
 \release{0.1}
-\author{Satish Karra,\and Kuang Zhu,\and Wenjuan Zhang,\and and Elchin Jafarov}
+\author{Elchin Jafarov, Satish Karra,\and Kuang Zhu,\and Wenjuan Zhang,\and and Kurt Solander}
 \newcommand{\sphinxlogo}{\vbox{}}
 \renewcommand{\releasename}{ }
 \makeindex
@@ -3741,9 +3741,3111 @@ d
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
 
+
+\chapter{Examples}
+\label{\detokenize{examples:examples}}\label{\detokenize{examples::doc}}
+
+\section{Jupyter Notebook}
+\label{\detokenize{jupyter_notebook/demos:jupyter-notebook}}\label{\detokenize{jupyter_notebook/demos::doc}}
 \sphinxAtStartPar
-\#   examples
-\#   join
+All demo cases are documented in jupyter notebooks
+
+
+\subsection{ADM1F: Steady State}
+\label{\detokenize{jupyter_notebook/Steady_State_Run:ADM1F:-Steady-State}}\label{\detokenize{jupyter_notebook/Steady_State_Run::doc}}
+\sphinxAtStartPar
+Here we run the steady state case and comparing it with the Matlab results. Make sure to compile \sphinxcode{\sphinxupquote{build/adm1f.cxx}}.
+
+\sphinxAtStartPar
+Author: Elchin Jafarov
+
+
+\subsubsection{1. Steady State Run}
+\label{\detokenize{jupyter_notebook/Steady_State_Run:1.-Steady-State-Run}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{subprocess}
+\PYG{k+kn}{import} \PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{metrics} \PYG{k}{as} \PYG{n+nn}{sklm}
+\PYG{k+kn}{import} \PYG{n+nn}{xlrd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} navigate to simulations folder}
+\PYG{n}{os}\PYG{o}{.}\PYG{n}{chdir}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../simulations}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check the path to the executable}
+\PYG{o}{!}\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}ADM1F\PYGZus{}EXE}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/Users/elchin/project/ADM1F\_WM/build/adm1f
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} running the executable in the cell}
+\PYG{o}{!}\PYG{n+nv}{\PYGZdl{}ADM1F\PYGZus{}EXE} \PYGZhy{}steady
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Vliq [m3] is: 3400.000000
+Vgas [m3] is: 300.000000
+Reading parameters in file: params.dat
+Reading influent values in file: influent.dat
+Reading initial condition values in file: ic.dat
+Running as steady state problem.
+Solving.
+Done!
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} remove the output files}
+\PYG{o}{!}sh clean.sh
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} or run using subprocess}
+\PYG{n}{subprocess}\PYG{o}{.}\PYG{n}{Popen}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZdl{}ADM1F\PYGZus{}EXE \PYGZhy{}ts\PYGZus{}monitor \PYGZhy{}steady}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{shell}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}<subprocess.Popen at 0x7f84a4974040>
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+If the run is successful then \sphinxcode{\sphinxupquote{indicator\sphinxhyphen{}***.out}} should be saved in the \sphinxcode{\sphinxupquote{simulations}} folder. Here take the last time step saved in the last indicator file (\sphinxcode{\sphinxupquote{indicator\sphinxhyphen{}062.out}}). The accending numeration of the output files corresponds to the time iterations taken towards the steady state condition.
+
+
+\subsubsection{2. Comparison of the ADM1F (C++) with ADM1 (Matlab)}
+\label{\detokenize{jupyter_notebook/Steady_State_Run:2.-Comparison-of-the-ADM1F-(C++)-with-ADM1-(Matlab)}}
+\sphinxAtStartPar
+The ADM1F runs much faster than the corresponding Matlab version. The main difference between C++ and the Matlab versions of the model is that ADM1F uses optimized solvers from the PETCS package to solve the corresponding mass balance equations. The ADM1F allows usage of the diffrent solvers. The ADM1(Matlab) is using ode45 nonstiff differential equation solver that cannot be changed. Below we benchmark ADM1F(C++) outputs with the ADM1(Matlab).
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} read the output produced by ADM1(Matlab) from the xls file}
+\PYG{n}{wb} \PYG{o}{=} \PYG{n}{xlrd}\PYG{o}{.}\PYG{n}{open\PYGZus{}workbook}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../docs/jupyter\PYGZus{}notebook/out\PYGZus{}sludge.xls}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{sheet} \PYG{o}{=} \PYG{n}{wb}\PYG{o}{.}\PYG{n}{sheet\PYGZus{}by\PYGZus{}index}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{results\PYGZus{}matlab} \PYG{o}{=} \PYG{p}{[}\PYG{n}{sheet}\PYG{o}{.}\PYG{n}{cell\PYGZus{}value}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,}\PYG{n}{i}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{66}\PYG{p}{)}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+load the last file from the steady runs and compare it with the Matlab output.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{results\PYGZus{}c}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{loadtxt}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{indicator\PYGZhy{}062.out}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{skiprows}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{n}{unpack}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{res} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{p}{\PYGZob{}}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Matlab}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{asarray}\PYG{p}{(}\PYG{n}{results\PYGZus{}matlab}\PYG{p}{)}\PYG{p}{,}
+    \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{C++}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{asarray}\PYG{p}{(}\PYG{n}{results\PYGZus{}c}\PYG{p}{[}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{\PYGZcb{}}\PYG{p}{)}
+\PYG{n}{res}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}      Matlab       C++
+0  10.116210  10.11620
+1   4.529384   4.52938
+2  83.095031  83.09500
+3   9.171951   9.17149
+4  11.824647  11.82410
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Matlab}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{\PYGZhy{}}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C++}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Number of outputs}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{14}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Difference }\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{14}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{res[Matlab]\PYGZhy{}res[C++]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{14}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlim}\PYG{p}{(}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mi}{60}\PYG{p}{]}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=411\sphinxpxdimen,height=283\sphinxpxdimen]{{jupyter_notebook_Steady_State_Run_14_0}.png}
+
+\end{nbsphinxfancyoutput}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{rmse}\PYG{o}{=}\PYG{n}{sklm}\PYG{o}{.}\PYG{n}{mean\PYGZus{}squared\PYGZus{}error}\PYG{p}{(}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Matlab}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C++}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{mae}\PYG{o}{=}\PYG{n}{sklm}\PYG{o}{.}\PYG{n}{mean\PYGZus{}absolute\PYGZus{}error}\PYG{p}{(}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Matlab}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C++}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{r2}\PYG{o}{=}\PYG{n}{sklm}\PYG{o}{.}\PYG{n}{r2\PYGZus{}score}\PYG{p}{(}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Matlab}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{res}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C++}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{MAE:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{mae}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{RMSE:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{rmse}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{R2 Score:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{r2}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+MAE: 0.0136
+RMSE: 0.0014
+R2 Score: 1.0
+\end{sphinxVerbatim}
+}
+
+
+\subsection{ADM1F: Execution time}
+\label{\detokenize{jupyter_notebook/execution_time:ADM1F:-Execution-time}}\label{\detokenize{jupyter_notebook/execution_time::doc}}
+\sphinxAtStartPar
+Here we calculate the execution time for a sample of size 100. We perturb a certain number of elements in one of the inputs files (e.g. influent.dat, ic.dat, params.dat) by some ‘percent’ value. We sample perturbed elements 100 times in a non\sphinxhyphen{}repeatable fashion using latin hypercube ‘lhs’ or ‘uniform’ sampling methods. Then we calculate the execution time 100 times. Note, if you do not have any of the packages used in this script, use \sphinxcode{\sphinxupquote{pip install package\_name}}.
+
+\sphinxAtStartPar
+Authors: Wenjuan Zhang and Elchin Jafarov
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{adm1f\PYGZus{}utils} \PYG{k}{as} \PYG{n+nn}{adm1fu}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} navigate to simulations folder}
+\PYG{n}{os}\PYG{o}{.}\PYG{n}{chdir}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../simulations}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{1.} Let’s vary elements of the influent.dat
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}Set the path to the ADM1F executable}
+\PYG{n}{ADM1F\PYGZus{}EXE} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/Users/elchin/project/ADM1F\PYGZus{}WM/build/adm1f}\PYG{l+s+s1}{\PYGZsq{}}
+
+\PYG{c+c1}{\PYGZsh{} Set the value of percentage and sample size for lhs}
+\PYG{n}{percent} \PYG{o}{=} \PYG{l+m+mf}{0.1} \PYG{c+c1}{\PYGZsh{} NOTE: for params percent should be \PYGZlt{}= 0.05}
+\PYG{n}{sample\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{variable} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{influent}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{} influent/params/ic}
+\PYG{n}{method} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lhs}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{}\PYGZsq{}uniform\PYGZsq{} or \PYGZsq{}lhs\PYGZsq{}}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}use help command to learn more about create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix function}
+\PYG{c+c1}{\PYGZsh{}help(adm1fu.create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{index}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{variable}\PYG{p}{,}\PYG{n}{method}\PYG{p}{,}\PYG{n}{percent}\PYG{p}{,}\PYG{n}{sample\PYGZus{}size}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Number of elements participated in the sampling:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{index}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Saves a sampling matrix [sample\_size,array\_size] into var\_influent.csv
+sample\_size,array\_size:  (100, 11)
+Each column of the matrix corresponds to a variable perturbed 100 times around its original value
+var\_influent.csv SAVED!
+
+Number of elements participated in the sampling: 11
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{exe\PYGZus{}time}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{adm1f\PYGZus{}output\PYGZus{}sampling}\PYG{p}{(}\PYG{n}{ADM1F\PYGZus{}EXE}\PYG{p}{,}\PYG{n}{variable}\PYG{p}{,}\PYG{n}{index}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+All 100 runs were successfully computed
+outputs\_influent.csv SAVED!
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Note:} Depending on the computer system configuration, the computational time might vary.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k}{def} \PYG{n+nf}{plot\PYGZus{}exec\PYGZus{}time}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{*}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{axhline}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{n}{linestyle}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}\PYGZhy{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.6}\PYG{p}{,}\PYG{n}{color}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{green}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{sample size}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{14}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Time [secs]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{14}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{exec time}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{mean}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{cumulative time:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{seconds}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{mean time:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{seconds}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{min time:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{o}{.}\PYG{n}{min}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{seconds}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{max time:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{round}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{o}{.}\PYG{n}{max}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{seconds}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{ax} \PYG{o}{=} \PYG{n}{plt}\PYG{o}{.}\PYG{n}{gca}\PYG{p}{(}\PYG{p}{)}
+    \PYG{n}{ax}\PYG{o}{.}\PYG{n}{tick\PYGZus{}params}\PYG{p}{(}\PYG{n}{axis} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{both}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{which} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{major}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{labelsize} \PYG{o}{=} \PYG{l+m+mi}{14}\PYG{p}{)}
+
+\PYG{n}{plot\PYGZus{}exec\PYGZus{}time}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+cumulative time: 23.97 seconds
+mean time: 0.24 seconds
+min time: 0.16 seconds
+max time: 0.34 seconds
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=406\sphinxpxdimen,height=270\sphinxpxdimen]{{jupyter_notebook_execution_time_9_1}.png}
+
+\end{nbsphinxfancyoutput}
+
+\sphinxAtStartPar
+\sphinxstylestrong{2.} Let’s vary the param.dat elements and compute the execution time.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Set the value of percentage and sample size for lhs}
+\PYG{n}{percent} \PYG{o}{=} \PYG{l+m+mf}{0.05} \PYG{c+c1}{\PYGZsh{} NOTE: for params percent should be \PYGZlt{}= 0.05}
+\PYG{n}{sample\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{variable} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{params}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{} influent/params/ic}
+\PYG{n}{method} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lhs}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{}\PYGZsq{}uniform\PYGZsq{} or \PYGZsq{}lhs\PYGZsq{}}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{index}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{variable}\PYG{p}{,}\PYG{n}{method}\PYG{p}{,}\PYG{n}{percent}\PYG{p}{,}\PYG{n}{sample\PYGZus{}size}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Number of elements participated in the sampling:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{index}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Saves a sampling matrix [sample\_size,array\_size] into var\_params.csv
+sample\_size,array\_size:  (100, 92)
+Each column of the matrix corresponds to a variable perturbed 100 times around its original value
+var\_params.csv SAVED!
+
+Number of elements participated in the sampling: 92
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{exe\PYGZus{}time}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{adm1f\PYGZus{}output\PYGZus{}sampling}\PYG{p}{(}\PYG{n}{ADM1F\PYGZus{}EXE}\PYG{p}{,}\PYG{n}{variable}\PYG{p}{,}\PYG{n}{index}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+All 100 runs were successfully computed
+outputs\_params.csv SAVED!
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plot\PYGZus{}exec\PYGZus{}time}\PYG{p}{(}\PYG{n}{exe\PYGZus{}time}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+cumulative time: 20.32 seconds
+mean time: 0.2 seconds
+min time: 0.0 seconds
+max time: 0.34 seconds
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=397\sphinxpxdimen,height=270\sphinxpxdimen]{{jupyter_notebook_execution_time_14_1}.png}
+
+\end{nbsphinxfancyoutput}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\end{sphinxVerbatim}
+}
+
+
+\subsection{ADM1F SRT: single tank and two\sphinxhyphen{}phase anaerobic dynamic membrane bioreactor}
+\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:ADM1F-SRT:-single-tank-and-two-phase-anaerobic-dynamic-membrane-bioreactor}}\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase::doc}}
+\sphinxAtStartPar
+This script is used to simulate a single tank suspended anaerobic dynamic membrane digester and a novel two\sphinxhyphen{}phase anaerobic dynamic membrane bioreator with separated SRT and HRT. In the two\sphinxhyphen{}phase reactor the effluent (model output) from the first phase dynamic membrane bioreactor is converted to the influent (model input) for the second\sphinxhyphen{}phase anaerobic dynamic membrane bioreactor as shown in the figure.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Note:} Before running the ADM1F SRT simulations see intructions on how to compile \sphinxcode{\sphinxupquote{adm1f\_srt.cxx}} in the User Guide.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Mass balance equation with SRT:}
+
+\sphinxAtStartPar
+The ADM1 and ADM1F solve the mass balance equation (i.e. mass\_change = mass\_in \textendash{} mass\_out + reaction). ADM1F\_SRT version of the model includes solid retention time (\(t_{res,X}\)) as shown in the equation below.
+\begin{equation*}
+\begin{split}\frac{d\, S_{\text{liq,i}}}{dt} = \frac{qS_{\text{in,i}}}{V_{\text{liq}}} - \frac{qS_{\text{liq,i}} }{V_{\text{liq}}}+ \sum_{j=1}^{12}\rho_{j} v_{i,j}\end{split}
+\end{equation*}\begin{equation*}
+\begin{split}\frac{d\, X_{\text{liq,i}}}{dt} = \frac{qX_{\text{in,i}}}{V_{\text{liq}}} - \frac{X_{\text{liq,i}}}{t_{\text{res,X}} + V_{\text{liq}}/q} + \sum_{j=13}^{24}\rho_{j} v_{i,j}\end{split}
+\end{equation*}
+\sphinxAtStartPar
+Authors: Wenjuan Zhang, Elchin Jafarov, Kuang Zhu
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Load packages}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
+\PYG{k+kn}{import} \PYG{n+nn}{adm1f\PYGZus{}utils} \PYG{k}{as} \PYG{n+nn}{adm1fu}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} navigate to simulations folder}
+\PYG{n}{os}\PYG{o}{.}\PYG{n}{chdir}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../simulations}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Grab the names and unit of all the outputs}
+\PYG{p}{(}\PYG{n}{output\PYGZus{}name}\PYG{p}{,}\PYG{n}{output\PYGZus{}unit}\PYG{p}{)}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{get\PYGZus{}output\PYGZus{}names}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}check the path to the executable}
+\PYG{o}{!}\PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}ADM1F\PYGZus{}EXE}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+/Users/elchin/project/ADM1F\_WM/build/adm1f
+\end{sphinxVerbatim}
+}
+
+
+\subsubsection{Single tank anaerobic dynamic membrane bioreactor (AnDMBR)}
+\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Single-tank-anaerobic-dynamic-membrane-bioreactor-(AnDMBR)}}
+\sphinxAtStartPar
+To simulate the single tank AnDMBR that has separated SRT and HRT, We can call the function\sphinxcode{\sphinxupquote{reactor1}} with different Q (flow\sphinxhyphen{}rate), Vliq (reactor volume), t\_resx (SRT\sphinxhyphen{}HRT) values, the function will return the corresponding output
+
+\sphinxAtStartPar
+Usage example: reactor1(Q=100, t\_resx=30, Vliq=300)
+
+\sphinxAtStartPar
+\sphinxstylestrong{(Unit)} Q: {[}m3/d{]}, t\_resx: {[}day{]}, Vliq: {[}m3{]}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} testing different SRTs=[0,1,2,...9] on the one\PYGZhy{}phase reactor}
+\PYG{n}{resx\PYGZus{}list} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} setup the matrix with columns correspoding SRTs and rows to outputs}
+\PYG{n}{output1\PYGZus{}resx} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{(}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{resx\PYGZus{}list}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{67}\PYG{p}{)}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} here we utilize back euler solver and adataptive time step}
+\PYG{c+c1}{\PYGZsh{} for more command options see \PYGZdq{}User Guide/Running ADM1F/step 5\PYGZdq{}}
+\PYG{n}{options}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}ts\PYGZus{}type beuler \PYGZhy{}ts\PYGZus{}adapt\PYGZus{}type basic \PYGZhy{}ts\PYGZus{}max\PYGZus{}snes\PYGZus{}failures \PYGZhy{}1 \PYGZhy{}steady}\PYG{l+s+s1}{\PYGZsq{}}
+
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{resx\PYGZus{}list}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{output1\PYGZus{}resx}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor1}\PYG{p}{(}\PYG{n}{opt}\PYG{o}{=}\PYG{n}{options}\PYG{p}{,} \PYG{n}{Vliq}\PYG{o}{=}\PYG{l+m+mi}{300}\PYG{p}{,} \PYG{n}{Q}\PYG{o}{=}\PYG{l+m+mi}{600}\PYG{p}{,} \PYG{n}{t\PYGZus{}resx}\PYG{o}{=}\PYG{n}{resx\PYGZus{}list}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{np}\PYG{o}{.}\PYG{n}{savetxt}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{output\PYGZus{}1phase.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{output1\PYGZus{}resx}\PYG{p}{,}\PYG{n}{delimiter}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}1.4e}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 0 -influent\_file influent\_cur.dat
+indicator-228.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 1 -influent\_file influent\_cur.dat
+indicator-307.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 2 -influent\_file influent\_cur.dat
+indicator-437.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 3 -influent\_file influent\_cur.dat
+indicator-563.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 4 -influent\_file influent\_cur.dat
+indicator-522.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 5 -influent\_file influent\_cur.dat
+indicator-517.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 6 -influent\_file influent\_cur.dat
+indicator-534.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 7 -influent\_file influent\_cur.dat
+indicator-542.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 8 -influent\_file influent\_cur.dat
+indicator-556.out
+Reactor run, phase-one:
+\$ADM1F\_EXE -ts\_type beuler -ts\_adapt\_type basic -ts\_max\_snes\_failures -1 -steady -Vliq 300 -t\_resx 9 -influent\_file influent\_cur.dat
+indicator-576.out
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{df1\PYGZus{}resx} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{output\PYGZus{}1phase.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{header}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}
+\PYG{n}{df1\PYGZus{}resx}\PYG{o}{.}\PYG{n}{columns} \PYG{o}{=} \PYG{n}{output\PYGZus{}name}
+\PYG{n}{df1\PYGZus{}resx}\PYG{o}{.}\PYG{n}{insert}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{T\PYGZus{}resx}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{resx\PYGZus{}list}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Relation between t\_resx and output when Vliq=300m3, Q=600m3/d}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check the results with increasing T\PYGZus{}resx, we should expect decrease in Ssu}
+\PYG{n}{df1\PYGZus{}resx}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}   T\_resx      Ssu       Saa      Sfa       Sva       Sbu      Spro     Sac   \textbackslash{}
+0       0  2152.800  324.2700  7382.70  2381.700  3667.300  2542.700  8263.5
+1       1   123.060   49.1670  7751.20  2574.400  4202.900  3244.500  9600.7
+2       2    63.057   26.6380  7839.00  2610.000  4268.600  3305.000  9742.9
+3       3    39.313   17.3450   908.19    41.129    54.118    53.411  3339.7
+4       4    30.634   13.5750   457.19    30.592    39.989    35.895  3066.6
+5       5    25.261   11.2240   309.53    24.543    31.958    27.254  2856.4
+6       6    21.606    9.6181   236.08    20.615    26.775    22.111  2685.8
+7       7    18.960    8.4513   192.13    17.859    23.153    18.702  2543.7
+8       8    16.955    7.5652   162.87    15.818    20.479    16.276  2423.2
+9       9    15.383    6.8691   141.96    14.244    18.422    14.462  2319.3
+
+        Sh2          Sch4   {\ldots}     Alk       NH3      NH4     LCFA   \textbackslash{}
+0  25.643000 -8.963700e-82  {\ldots}  44957.0  0.053067  1074.00  7382.70
+1  30.352000  3.859800e-12  {\ldots}  59182.0  0.047701  1135.60  7751.20
+2  30.772000  1.129100e-09  {\ldots}  61421.0  0.048208  1150.90  7839.00
+3   0.000662  2.574900e+02  {\ldots}  16289.0  2.513100   963.03   908.19
+4   0.000515  2.653300e+02  {\ldots}  18846.0  3.157300   963.70   457.19
+5   0.000424  2.695900e+02  {\ldots}  21320.0  3.693300   966.73   309.53
+6   0.000362  2.726300e+02  {\ldots}  23721.0  4.147800   970.17   236.08
+7   0.000317  2.750200e+02  {\ldots}  26050.0  4.540600   973.69   192.13
+8   0.000284  2.770000e+02  {\ldots}  28311.0  4.885500   977.21   162.87
+9   0.000257  2.786900e+02  {\ldots}  30505.0  5.192300   980.68   141.96
+
+    percentch4    energych4   efficiency   VFA/ALK           ACN  sampleT
+0 -1.133000e-81       83.808      3.9774  0.351490 -3.203400e-72      0.5
+1  1.599000e-12      100.630    -76.4800  0.310840  1.255000e-08      0.5
+2  4.600500e-10      102.210   -155.0200  0.304150  2.832600e-07      0.5
+3  5.579800e+01      209.370   -218.4400  0.200760  9.097200e+00      0.5
+4  5.623900e+01      214.510   -304.2100  0.157850  1.324200e+01      0.5
+5  5.648800e+01      217.230   -390.0200  0.129290  1.778600e+01      0.5
+6  5.666900e+01      219.140   -475.6200  0.108900  2.278900e+01      0.5
+7  5.681200e+01      220.630   -560.8900  0.093693  2.825000e+01      0.5
+8  5.692900e+01      221.870   -645.8400  0.081984  3.416600e+01      0.5
+9  5.702800e+01      222.920   -730.4900  0.072728  4.053400e+01      0.5
+
+[10 rows x 68 columns]
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} correlation between SRT and output}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{24}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{corr1}\PYG{o}{=}\PYG{n}{df1\PYGZus{}resx}\PYG{o}{.}\PYG{n}{corr}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{corr1}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{67}\PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{xticklabels}\PYG{o}{=}\PYG{n}{df1\PYGZus{}resx}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{67}\PYG{p}{:}\PYG{p}{]}\PYG{p}{,} \PYG{n}{yticklabels}\PYG{o}{=}\PYG{n}{df1\PYGZus{}resx}\PYG{o}{.}\PYG{n}{columns}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{n}{sns}\PYG{o}{.}\PYG{n}{diverging\PYGZus{}palette}\PYG{p}{(}\PYG{l+m+mi}{220}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{as\PYGZus{}cmap}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Correlation Matrix [t\PYGZus{}resx/results]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=1204\sphinxpxdimen,height=159\sphinxpxdimen]{{jupyter_notebook_ADM1F_SRT_2phase_11_0}.png}
+
+\end{nbsphinxfancyoutput}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Configurations}
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|T|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Configuration
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Vliq (m\(^3\))
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+t\_resx (d)
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Q (m\(^3\)/d)
+\\
+\hline
+\sphinxAtStartPar
+Sherri’s
+&
+\sphinxAtStartPar
+3400
+&
+\sphinxAtStartPar
+0
+&
+\sphinxAtStartPar
+134
+\\
+\hline
+\sphinxAtStartPar
+Phase 1
+&
+\sphinxAtStartPar
+340
+&
+\sphinxAtStartPar
+1.5
+&
+\sphinxAtStartPar
+618
+\\
+\hline
+\sphinxAtStartPar
+Phase 2
+&
+\sphinxAtStartPar
+3400
+&
+\sphinxAtStartPar
+700
+&
+\sphinxAtStartPar
+618/—
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+where t\_resx = SRT \sphinxhyphen{} HRT
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{config\PYGZus{}default} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Vliq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{t\PYGZus{}resx}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Q}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{134}\PYG{p}{\PYGZcb{}}
+\PYG{n}{config1} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Vliq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{340}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{t\PYGZus{}resx}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Q}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{618}\PYG{p}{\PYGZcb{}}
+\PYG{n}{config2} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Vliq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{t\PYGZus{}resx}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{700}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Q}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{618}\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+}
+
+
+\paragraph{Default Configuration}
+\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Default-Configuration}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} output using default configuration}
+\PYG{n}{ls\PYGZus{}default} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor1}\PYG{p}{(}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config\PYGZus{}default}\PYG{p}{)}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}default} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{data} \PYG{o}{=} \PYG{p}{[}\PYG{n}{ls\PYGZus{}default}\PYG{p}{]}\PYG{p}{,}\PYG{n}{columns}\PYG{o}{=}\PYG{n}{output\PYGZus{}name}\PYG{p}{,} \PYG{n}{index}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Sherri}\PYG{l+s+se}{\PYGZbs{}\PYGZsq{}}\PYG{l+s+s1}{s Configuration}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}default}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, phase-one:
+\$ADM1F\_EXE  -Vliq 3400 -t\_resx 0 -influent\_file influent\_cur.dat
+indicator-034.out
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                           Ssu      Saa      Sfa      Sva      Sbu     Spro   \textbackslash{}
+Sherri's Configuration  7.17674  3.21796  54.9446  6.39778  8.23228  6.08339
+
+                          Sac      Sh2     Sch4      Sic   {\ldots}     Alk   \textbackslash{}
+Sherri's Configuration  1963.6  0.00012  48.3303  639.764  {\ldots}  8438.52
+
+                           NH3      NH4     LCFA    percentch4    energych4   \textbackslash{}
+Sherri's Configuration  9.32395  1026.69  54.9446        56.905       65.228
+
+                        efficiency   VFA/ALK      ACN  sampleT
+Sherri's Configuration     53.3712  0.220453  109.164  25.3731
+
+[1 rows x 67 columns]
+\end{sphinxVerbatim}
+}
+
+
+\paragraph{Configuration 1}
+\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Configuration-1}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} output using configuration 1}
+\PYG{n}{ls\PYGZus{}config1} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor1}\PYG{p}{(}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config1}\PYG{p}{)}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}config1} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{data} \PYG{o}{=} \PYG{p}{[}\PYG{n}{ls\PYGZus{}config1}\PYG{p}{]}\PYG{p}{,}\PYG{n}{columns}\PYG{o}{=}\PYG{n}{output\PYGZus{}name}\PYG{p}{,} \PYG{n}{index}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Phase 1 Configuration}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}config1}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, phase-one:
+\$ADM1F\_EXE  -Vliq 340 -t\_resx 1.5 -influent\_file influent\_cur.dat
+indicator-051.out
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                          Ssu      Saa      Sfa      Sva      Sbu     Spro   \textbackslash{}
+Phase 1 Configuration  80.5616  33.4704  7808.75  2598.14  4246.87  3285.25
+
+                          Sac      Sh2          Sch4      Sic   {\ldots}     Alk   \textbackslash{}
+Phase 1 Configuration  9696.05  28.5069  9.600970e-30  147.214  {\ldots}  60316.4
+
+                           NH3     NH4     LCFA    percentch4    energych4   \textbackslash{}
+Phase 1 Configuration  0.048011  1145.6  7808.75  4.182560e-30      104.203
+
+                       efficiency   VFA/ALK           ACN   sampleT
+Phase 1 Configuration    -104.737  0.308161  1.722550e-17  0.550162
+
+[1 rows x 67 columns]
+\end{sphinxVerbatim}
+}
+
+
+\paragraph{Configuration 2}
+\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Configuration-2}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} output using configuration 2}
+\PYG{n}{ls\PYGZus{}config2} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor1}\PYG{p}{(}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config2}\PYG{p}{)}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}config2} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{data} \PYG{o}{=} \PYG{p}{[}\PYG{n}{ls\PYGZus{}config2}\PYG{p}{]}\PYG{p}{,}\PYG{n}{columns}\PYG{o}{=}\PYG{n}{output\PYGZus{}name}\PYG{p}{,} \PYG{n}{index}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Phase 2 Configuration}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}config2}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, phase-one:
+\$ADM1F\_EXE  -Vliq 3400 -t\_resx 700 -influent\_file influent\_cur.dat
+indicator-025.out
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}                          Ssu      Saa      Sfa      Sva      Sbu     Spro   \textbackslash{}
+Phase 2 Configuration  2.70068  1.20723  19.0168  2.34856  3.01652  2.16597
+
+                          Sac       Sh2     Sch4      Sic   {\ldots}     Alk   \textbackslash{}
+Phase 2 Configuration  1125.18  0.000045  75.1774  952.376  {\ldots}  21574.7
+
+                          NH3      NH4     LCFA    percentch4    energych4   \textbackslash{}
+Phase 2 Configuration  14.7549  1186.64  19.0168        58.194      255.569
+
+                       efficiency   VFA/ALK      ACN  sampleT
+Phase 2 Configuration    -899.833  0.049221  3302.96  5.50162
+
+[1 rows x 67 columns]
+\end{sphinxVerbatim}
+}
+
+
+\subsubsection{Two\sphinxhyphen{}Phase anaerobic dynamic membrane bioreactor}
+\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Two-Phase-anaerobic-dynamic-membrane-bioreactor}}
+\sphinxAtStartPar
+To simulate a novel two\sphinxhyphen{}phase AnDMBR, We can call the function \sphinxcode{\sphinxupquote{reactor2}} with different Q1 (phase 1 flow rate), Q2 (phase 2 flow rate, normally equal to Q1), Vliq1 (phase 1 volume), Vliq2 (phase 2 volume), t\_resx1 (SRT\sphinxhyphen{}HRT for phase 1), and t\_resx2 (SRT\sphinxhyphen{}HRT for phase 1) values. In this function, the model output from phase 1 will be extracted and converted to the model input for phase 2. The function will return phase1 output and phase2 output
+
+\sphinxAtStartPar
+Usage example: reactor2(Q1=100, t\_resx1=30, t\_resx2=100, Vliq1=300, Vliq2=3000)
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{IPython}\PYG{n+nn}{.}\PYG{n+nn}{display} \PYG{k+kn}{import} \PYG{n}{Image}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Schematics of the two\PYGZhy{}phase reactor}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{Image}\PYG{p}{(}\PYG{n}{filename}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../docs/\PYGZus{}static/images/2phase\PYGZus{}reactor.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Schematics of the two-phase reactor
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\savebox\nbsphinxpromptbox[0pt][r]{\color{nbsphinxout}\Verb|\strut{[13]:}\,|}
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=1236\sphinxpxdimen,height=634\sphinxpxdimen]{{jupyter_notebook_ADM1F_SRT_2phase_21_1}.png}
+
+\end{nbsphinxfancyoutput}
+
+
+\paragraph{Config12}
+\label{\detokenize{jupyter_notebook/ADM1F_SRT_2phase:Config12}}
+\sphinxAtStartPar
+\sphinxstylestrong{Configurations}
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|T|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Configuration
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Vliq (m\(^3\))
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+t\_resx (d)
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Q (m\(^3\)/d)
+\\
+\hline
+\sphinxAtStartPar
+Sherri’s
+&
+\sphinxAtStartPar
+3400
+&
+\sphinxAtStartPar
+0
+&
+\sphinxAtStartPar
+134
+\\
+\hline
+\sphinxAtStartPar
+Phase 1
+&
+\sphinxAtStartPar
+340
+&
+\sphinxAtStartPar
+1.5
+&
+\sphinxAtStartPar
+618
+\\
+\hline
+\sphinxAtStartPar
+Phase 2
+&
+\sphinxAtStartPar
+3400
+&
+\sphinxAtStartPar
+700
+&
+\sphinxAtStartPar
+618/—
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+where t\_resx = SRT \sphinxhyphen{} HRT
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} config12 = \PYGZob{}\PYGZdq{}Vliq1\PYGZdq{}:340, \PYGZdq{}Vliq2\PYGZdq{}:3400, \PYGZdq{}t\PYGZus{}resx1\PYGZdq{}:1.5, \PYGZdq{}t\PYGZus{}resx2\PYGZdq{}:700, \PYGZdq{}Q1\PYGZdq{}:618, \PYGZdq{}Q2\PYGZdq{}:618\PYGZcb{}}
+\PYG{n}{config12} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Vliq1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{340}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Vliq2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{t\PYGZus{}resx1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{t\PYGZus{}resx2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{700}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Q1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{618}\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{result\PYGZus{}config12} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor2}\PYG{p}{(}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config12}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, phase-one:
+\$ADM1F\_EXE  -Vliq 340 -t\_resx 1.5 -influent\_file influent\_cur.dat
+indicator-051.out
+Reactor run, phase-two:
+\$ADM1F\_EXE -Vliq 3400 -t\_resx 700 -influent\_file influent\_cur.dat
+indicator-024.out
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} output using config12}
+\PYG{n}{result\PYGZus{}config12} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor2}\PYG{p}{(}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config12}\PYG{p}{)}
+\PYG{n}{ls1\PYGZus{}config12} \PYG{o}{=} \PYG{n}{result\PYGZus{}config12}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{ls2\PYGZus{}config12} \PYG{o}{=} \PYG{n}{result\PYGZus{}config12}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}
+
+\PYG{n}{df\PYGZus{}config12} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{data} \PYG{o}{=} \PYG{p}{[}\PYG{n}{ls1\PYGZus{}config12}\PYG{p}{]}\PYG{p}{,}\PYG{n}{columns}\PYG{o}{=}\PYG{n}{output\PYGZus{}name}\PYG{p}{,}\PYG{n}{index}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Phase1}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{df\PYGZus{}config12}\PYG{o}{.}\PYG{n}{loc}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Phase2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]} \PYG{o}{=} \PYG{n}{ls2\PYGZus{}config12}
+\PYG{n}{df\PYGZus{}config12}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, phase-one:
+\$ADM1F\_EXE  -Vliq 340 -t\_resx 1.5 -influent\_file influent\_cur.dat
+indicator-051.out
+Reactor run, phase-two:
+\$ADM1F\_EXE -Vliq 3400 -t\_resx 700 -influent\_file influent\_cur.dat
+indicator-024.out
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}             Ssu        Saa        Sfa         Sva         Sbu        Spro   \textbackslash{}
+Phase1  80.561600  33.470400  7808.7500  2598.14000  4246.87000  3285.25000
+Phase2   0.355681   0.132504    19.2757     2.37729     3.05196     2.19399
+
+           Sac        Sh2          Sch4      Sic   {\ldots}     Alk        NH3   \textbackslash{}
+Phase1  9696.05  28.506900  9.371060e-31  147.214  {\ldots}  60316.4   0.048011
+Phase2  1248.96   0.000046  7.114040e+01  867.356  {\ldots}  17101.8  15.289200
+
+          NH4       LCFA    percentch4    energych4   efficiency   VFA/ALK  \textbackslash{}
+Phase1  1145.6  7808.7500  4.082390e-31      104.203    -104.737  0.308161
+Phase2  1139.4    19.2757  6.198330e+01      192.277    -590.307  0.068884
+
+                 ACN   sampleT
+Phase1  5.381270e-18  0.550162
+Phase2 -2.807000e+01  6.241160
+
+[2 rows x 67 columns]
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\end{sphinxVerbatim}
+}
+
+
+\subsection{ADM1F\_SRT: Input/output sensitivity}
+\label{\detokenize{jupyter_notebook/io_sensitivity_analysis:ADM1F_SRT:-Input/output-sensitivity}}\label{\detokenize{jupyter_notebook/io_sensitivity_analysis::doc}}
+\sphinxAtStartPar
+Here we explore the relationships between inputs and outputs. In the \sphinxcode{\sphinxupquote{ADM1F: Execution time}} example we showed how to run the models with the perturbed input values from \sphinxcode{\sphinxupquote{influent.dat}} and \sphinxcode{\sphinxupquote{param.dat}} files. Assuming that you run the \sphinxcode{\sphinxupquote{ADM1F: Execution time}} example and produced the \sphinxcode{\sphinxupquote{outputs\_influent.csv}} and \sphinxcode{\sphinxupquote{outputs\_params.csv}} files, we use these outputs here to study the relationship between influents and outputs, and params and outputs. If not just uncomment lines 5 and 18 and
+re\sphinxhyphen{}run the simulations.
+
+\sphinxAtStartPar
+Authors: Wenjuan Zhang and Elchin Jafarov
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{adm1f\PYGZus{}utils} \PYG{k}{as} \PYG{n+nn}{adm1fu}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k}{as} \PYG{n+nn}{sns}
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\end{sphinxVerbatim}
+}
+
+
+\subsubsection{1. Influent/Output sensitivity}
+\label{\detokenize{jupyter_notebook/io_sensitivity_analysis:1.-Influent/Output-sensitivity}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} navigate to simulations folder}
+\PYG{n}{os}\PYG{o}{.}\PYG{n}{chdir}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../simulations}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}Set the path to the ADM1F executable}
+\PYG{n}{ADM1F\PYGZus{}EXE} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/Users/elchin/project/ADM1F\PYGZus{}WM/build/adm1f}\PYG{l+s+s1}{\PYGZsq{}}
+
+\PYG{c+c1}{\PYGZsh{} Set the value of percentage and sample size for lhs}
+\PYG{n}{percent} \PYG{o}{=} \PYG{l+m+mf}{0.1} \PYG{c+c1}{\PYGZsh{} NOTE: for params percent should be \PYGZlt{}= 0.05}
+\PYG{n}{sample\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{variable} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{influent}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{} influent/params/ic}
+\PYG{n}{method} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{uniform}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{}\PYGZsq{}uniform\PYGZsq{} or \PYGZsq{}lhs\PYGZsq{}}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{index}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{variable}\PYG{p}{,}\PYG{n}{method}\PYG{p}{,}\PYG{n}{percent}\PYG{p}{,}\PYG{n}{sample\PYGZus{}size}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Number of elements participated in the sampling:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{index}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Saves a sampling matrix [sample\_size,array\_size] into var\_influent.csv
+sample\_size,array\_size:  (100, 11)
+Each column of the matrix corresponds to a variable perturbed 100 times around its original value
+var\_influent.csv SAVED!
+
+Number of elements participated in the sampling: 11
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}exe\PYGZus{}time=adm1fu.adm1f\PYGZus{}output\PYGZus{}sampling(ADM1F\PYGZus{}EXE,variable,index)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{p}{[}\PYG{n}{output\PYGZus{}name}\PYG{p}{,}\PYG{n}{output\PYGZus{}unit}\PYG{p}{]}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{get\PYGZus{}output\PYGZus{}names}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{alloutputs} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{outputs\PYGZus{}influent.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{header}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}
+\PYG{n}{alloutputs}\PYG{o}{.}\PYG{n}{columns} \PYG{o}{=} \PYG{n}{output\PYGZus{}name}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{alloutputs}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}       Ssu      Saa      Sfa      Sva      Sbu     Spro      Sac       Sh2   \textbackslash{}
+0   7.37820  3.30795  56.7230  6.60272  8.46032  6.26942  1908.38  0.000123
+1   7.28460  3.26614  55.8953  6.52078  8.34621  6.18289  2033.37  0.000121
+2   6.85866  3.07582  52.1661  6.11321  7.84990  5.79147  1926.30  0.000114
+3   6.72726  3.01709  51.0289  5.97094  7.70738  5.67153  1931.76  0.000112
+4   7.55763  3.38810  58.3212  6.83699  8.63179  6.43593  2242.26  0.000126
+..      {\ldots}      {\ldots}      {\ldots}      {\ldots}      {\ldots}      {\ldots}      {\ldots}       {\ldots}
+95  7.65859  3.43319  59.2237  6.78604  8.84032  6.52986  1911.45  0.000128
+96  7.40606  3.32040  56.9708  6.57190  8.52763  6.29525  2049.40  0.000123
+97  7.06582  3.16840  53.9710  6.30301  8.09601  5.98132  1778.88  0.000118
+98  6.85456  3.07399  52.1312  6.12749  7.83407  5.78776  2146.27  0.000114
+99  7.44704  3.33870  57.3346  6.67541  8.53678  6.33321  1983.08  0.000124
+
+      Sch4      Sic   {\ldots}     Alk       NH3       NH4     LCFA    percentch4   \textbackslash{}
+0   48.7774  615.799  {\ldots}  8148.98   8.64671   987.952  56.7230       57.2720
+1   48.4068  645.849  {\ldots}  8602.48   9.61694  1048.750  55.8953       56.8728
+2   47.7048  651.060  {\ldots}  8442.25   9.57599  1031.740  52.1661       56.7510
+3   47.6768  660.852  {\ldots}  8558.31   9.84058  1044.000  51.0289       56.6698
+4   49.1049  657.957  {\ldots}  9061.95  10.49270  1109.360  58.3212       57.2318
+..      {\ldots}      {\ldots}  {\ldots}      {\ldots}       {\ldots}       {\ldots}      {\ldots}           {\ldots}
+95  48.9244  616.258  {\ldots}  8197.36   8.37148   985.507  59.2237       56.5753
+96  48.6287  649.584  {\ldots}  8699.15   9.58421  1054.650  56.9708       56.5357
+97  48.2397  605.950  {\ldots}  7819.47   8.22490   949.405  53.9710       57.3804
+98  48.1629  685.484  {\ldots}  9144.20  11.07250  1119.840  52.1312       56.8556
+99  48.5798  627.253  {\ldots}  8349.28   9.04090  1016.750  57.3346       57.0513
+
+     energych4   efficiency   VFA/ALK       ACN  sampleT
+0       66.2091     52.7615  0.222004  116.5620  24.3594
+1       65.9860     53.8907  0.223891   92.1431  24.8179
+2       61.6157     52.8110  0.216106  125.4410  27.1630
+3       61.9098     53.9655  0.213730  116.0810  27.9786
+4       68.8331     51.4620  0.234238   77.3666  23.5162
+..          {\ldots}         {\ldots}       {\ldots}       {\ldots}      {\ldots}
+95      71.6467     52.7621  0.221140  125.5700  23.0752
+96      69.7230     54.2485  0.223168  102.1390  24.2222
+97      61.6582     52.9718  0.215719  129.6520  25.9740
+98      64.3136     53.8121  0.222069   88.1808  27.1834
+99      66.1387     53.8114  0.225090  103.0960  24.0295
+
+[100 rows x 67 columns]
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{p}{[}\PYG{n}{influent\PYGZus{}name}\PYG{p}{,}\PYG{n}{influent\PYGZus{}index}\PYG{p}{]}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{get\PYGZus{}influent\PYGZus{}names}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} since we did not use all the columns in the influent.dat (see create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix)}
+\PYG{c+c1}{\PYGZsh{} we use index to select used headers for used values}
+\PYG{n}{header}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{index}\PYG{p}{:}
+    \PYG{n}{header}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{influent\PYGZus{}name}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{influent\PYGZus{}inputs} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{var\PYGZus{}influent.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{header}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}
+\PYG{n}{influent\PYGZus{}inputs}\PYG{o}{.}\PYG{n}{columns} \PYG{o}{=} \PYG{n}{header}
+\PYG{n}{influent\PYGZus{}inputs}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}   S\_su\_in  S\_aa\_in  S\_fa\_in  S\_ac\_in  S\_IN\_in  X\_ch\_biom\_in  X\_pr\_biom\_in  \textbackslash{}
+0  2.41679  4.54049  3.26551  1.06715  0.00794       8.21103       7.65897
+1  2.71197  4.44197  2.94117  0.97991  0.00798       8.47247       8.44312
+2  2.37594  4.05372  3.09329  1.10619  0.00801       8.84280       8.55680
+3  2.70155  4.55292  3.31319  1.00561  0.00784       9.14260       8.30096
+4  2.35939  4.30043  3.00319  1.05070  0.00860       8.26193       9.19056
+
+   X\_li\_biom\_in    X\_I\_in          Q      Temp
+0       5.45471  18.04704  139.57635  31.64409
+1       5.01331  16.95071  136.99766  32.47646
+2       4.62146  18.06979  125.17005  31.95536
+3       4.69829  17.67225  121.52161  37.86524
+4       5.36216  19.24420  144.58137  35.68530
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} merge influent and output datasets}
+\PYG{n}{inout}\PYG{o}{=}\PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{(}\PYG{p}{[}\PYG{n}{influent\PYGZus{}inputs}\PYG{p}{,}\PYG{n}{alloutputs}\PYG{p}{]}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{inout}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}   S\_su\_in  S\_aa\_in  S\_fa\_in  S\_ac\_in  S\_IN\_in  X\_ch\_biom\_in  X\_pr\_biom\_in  \textbackslash{}
+0  2.41679  4.54049  3.26551  1.06715  0.00794       8.21103       7.65897
+1  2.71197  4.44197  2.94117  0.97991  0.00798       8.47247       8.44312
+2  2.37594  4.05372  3.09329  1.10619  0.00801       8.84280       8.55680
+3  2.70155  4.55292  3.31319  1.00561  0.00784       9.14260       8.30096
+4  2.35939  4.30043  3.00319  1.05070  0.00860       8.26193       9.19056
+
+   X\_li\_biom\_in    X\_I\_in          Q  {\ldots}     Alk       NH3       NH4   \textbackslash{}
+0       5.45471  18.04704  139.57635  {\ldots}  8148.98   8.64671   987.952
+1       5.01331  16.95071  136.99766  {\ldots}  8602.48   9.61694  1048.750
+2       4.62146  18.06979  125.17005  {\ldots}  8442.25   9.57599  1031.740
+3       4.69829  17.67225  121.52161  {\ldots}  8558.31   9.84058  1044.000
+4       5.36216  19.24420  144.58137  {\ldots}  9061.95  10.49270  1109.360
+
+     LCFA    percentch4    energych4   efficiency   VFA/ALK       ACN  sampleT
+0  56.7230       57.2720      66.2091     52.7615  0.222004  116.5620  24.3594
+1  55.8953       56.8728      65.9860     53.8907  0.223891   92.1431  24.8179
+2  52.1661       56.7510      61.6157     52.8110  0.216106  125.4410  27.1630
+3  51.0289       56.6698      61.9098     53.9655  0.213730  116.0810  27.9786
+4  58.3212       57.2318      68.8331     51.4620  0.234238   77.3666  23.5162
+
+[5 rows x 78 columns]
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+The correlation heat map matrix below shows that four influents have the highest impact on the results: \sphinxcode{\sphinxupquote{X\_ch\_biom\_in}}, \sphinxcode{\sphinxupquote{X\_pr\_biom\_in}}, \sphinxcode{\sphinxupquote{X\_li\_biom\_in}}, and \sphinxcode{\sphinxupquote{Q}}.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{corr}\PYG{o}{=}\PYG{n}{inout}\PYG{o}{.}\PYG{n}{corr}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{21}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{corr}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{11}\PYG{p}{,}\PYG{l+m+mi}{11}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{n}{sns}\PYG{o}{.}\PYG{n}{diverging\PYGZus{}palette}\PYG{p}{(}\PYG{l+m+mi}{220}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{as\PYGZus{}cmap}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Correlation Matrix [influent/results]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Influent}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Outputs}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}Text(0.5, 23.09375, 'Outputs')
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=1155\sphinxpxdimen,height=392\sphinxpxdimen]{{jupyter_notebook_io_sensitivity_analysis_13_1}.png}
+
+\end{nbsphinxfancyoutput}
+
+\sphinxAtStartPar
+Let’s merge \sphinxcode{\sphinxupquote{ph}} values from the results with the influents and explore the correlations.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{influent\PYGZus{}ph}\PYG{o}{=}\PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{(}\PYG{p}{[}\PYG{n}{influent\PYGZus{}inputs}\PYG{p}{,}\PYG{n}{alloutputs}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ pH }\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{]}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{4}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{influent\PYGZus{}ph}\PYG{o}{.}\PYG{n}{corr}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{linewidth}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Correlation plot (ph)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Influents}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Correlation}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylim}\PYG{p}{(}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}(-1.0, 1.0)
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=624\sphinxpxdimen,height=279\sphinxpxdimen]{{jupyter_notebook_io_sensitivity_analysis_16_1}.png}
+
+\end{nbsphinxfancyoutput}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(} \PYG{n}{influent\PYGZus{}ph}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{X\PYGZus{}pr\PYGZus{}biom\PYGZus{}in}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{influent\PYGZus{}ph}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ pH }\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{X\PYGZus{}pr\PYGZus{}biom\PYGZus{}in}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{18}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{pH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{18}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=402\sphinxpxdimen,height=271\sphinxpxdimen]{{jupyter_notebook_io_sensitivity_analysis_17_0}.png}
+
+\end{nbsphinxfancyoutput}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{from} \PYG{n+nn}{pandas}\PYG{n+nn}{.}\PYG{n+nn}{plotting} \PYG{k+kn}{import} \PYG{n}{scatter\PYGZus{}matrix}
+\PYG{n}{scatter\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{influent\PYGZus{}ph}\PYG{p}{,} \PYG{n}{alpha}\PYG{o}{=}\PYG{l+m+mf}{0.6}\PYG{p}{,}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{10}\PYG{p}{)}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=616\sphinxpxdimen,height=602\sphinxpxdimen]{{jupyter_notebook_io_sensitivity_analysis_18_0}.png}
+
+\end{nbsphinxfancyoutput}
+
+
+\subsubsection{2. Params/Output sensitivity}
+\label{\detokenize{jupyter_notebook/io_sensitivity_analysis:2.-Params/Output-sensitivity}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Set the value of percentage and sample size for lhs}
+\PYG{n}{percent} \PYG{o}{=} \PYG{l+m+mf}{0.1} \PYG{c+c1}{\PYGZsh{} NOTE: for params percent should be \PYGZlt{}= 0.05}
+\PYG{n}{sample\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{variable} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{params}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{} influent/params/ic}
+\PYG{n}{method} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{uniform}\PYG{l+s+s1}{\PYGZsq{}}    \PYG{c+c1}{\PYGZsh{}\PYGZsq{}uniform\PYGZsq{} or \PYGZsq{}lhs\PYGZsq{}}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{index}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{variable}\PYG{p}{,}\PYG{n}{method}\PYG{p}{,}\PYG{n}{percent}\PYG{p}{,}\PYG{n}{sample\PYGZus{}size}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Number of elements participated in the sampling:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{index}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Saves a sampling matrix [sample\_size,array\_size] into var\_params.csv
+sample\_size,array\_size:  (100, 92)
+Each column of the matrix corresponds to a variable perturbed 100 times around its original value
+var\_params.csv SAVED!
+
+Number of elements participated in the sampling: 92
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}exe\PYGZus{}time=adm1fu.adm1f\PYGZus{}output\PYGZus{}sampling(ADM1F\PYGZus{}EXE,variable,index)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{p}{[}\PYG{n}{output\PYGZus{}name}\PYG{p}{,}\PYG{n}{output\PYGZus{}unit}\PYG{p}{]}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{get\PYGZus{}output\PYGZus{}names}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{alloutputs} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{outputs\PYGZus{}params.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{header}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}
+\PYG{n}{alloutputs}\PYG{o}{.}\PYG{n}{columns} \PYG{o}{=} \PYG{n}{output\PYGZus{}name}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{p}{[}\PYG{n}{param\PYGZus{}name}\PYG{p}{,}\PYG{n}{param\PYGZus{}index}\PYG{p}{]}\PYG{o}{=}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{get\PYGZus{}param\PYGZus{}names}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} since we did not use all the columns in the influent.dat (see create\PYGZus{}a\PYGZus{}sample\PYGZus{}matrix)}
+\PYG{c+c1}{\PYGZsh{} we use index to select used headers for used values}
+\PYG{n}{header}\PYG{o}{=}\PYG{p}{[}\PYG{p}{]}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{index}\PYG{p}{:}
+    \PYG{n}{header}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{param\PYGZus{}name}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)}
+
+\PYG{n}{param\PYGZus{}inputs} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{var\PYGZus{}params.csv}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{sep}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{,}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{header}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{)}
+\PYG{n}{param\PYGZus{}inputs}\PYG{o}{.}\PYG{n}{columns} \PYG{o}{=} \PYG{n}{header}
+\PYG{n}{param\PYGZus{}inputs}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}   f\_sI\_xc  f\_xI\_xc  f\_ch\_xc  f\_pr\_xc  f\_li\_xc     N\_xc      N\_I     N\_aa  \textbackslash{}
+0  0.09116  0.27346  0.21535  0.21711  0.27475  0.00251  0.00420  0.00736
+1  0.09692  0.25605  0.18183  0.21486  0.27367  0.00293  0.00450  0.00648
+2  0.09653  0.25089  0.18351  0.19403  0.22666  0.00246  0.00420  0.00649
+3  0.09891  0.25074  0.19437  0.20372  0.23318  0.00263  0.00468  0.00666
+4  0.10742  0.26412  0.20268  0.20954  0.26893  0.00263  0.00414  0.00723
+
+      C\_xc     C\_sI  {\ldots}      k\_A\_Bpro       k\_A\_Bac      k\_A\_Bco2  \textbackslash{}
+0  0.02895  0.02792  {\ldots}  1.026524e+10  1.086406e+10  9.205019e+09
+1  0.02930  0.02715  {\ldots}  9.961014e+09  9.209860e+09  9.484090e+09
+2  0.02824  0.03114  {\ldots}  1.043165e+10  1.081807e+10  9.359366e+09
+3  0.02873  0.02895  {\ldots}  9.431350e+09  1.031777e+10  9.787729e+09
+4  0.02958  0.03157  {\ldots}  1.090281e+10  1.020322e+10  1.063838e+10
+
+        k\_A\_BIN        kLa  K\_H\_h2o\_base  K\_H\_co2\_base  K\_H\_ch4\_base  \textbackslash{}
+0  1.087446e+10  207.51543       0.02859       0.03361       0.00146
+1  1.097333e+10  185.69982       0.03129       0.03583       0.00146
+2  9.475087e+09  218.85580       0.02930       0.03748       0.00140
+3  1.030247e+10  184.26372       0.03229       0.03850       0.00127
+4  1.076841e+10  189.12319       0.02950       0.03578       0.00138
+
+   K\_H\_h2\_base          k\_P
+0      0.00071  50821.70460
+1      0.00079  45097.70847
+2      0.00074  53707.49901
+3      0.00086  49069.07961
+4      0.00083  54000.23123
+
+[5 rows x 92 columns]
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[22]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} merge influent and output datasets}
+\PYG{n}{inout}\PYG{o}{=}\PYG{n}{pd}\PYG{o}{.}\PYG{n}{concat}\PYG{p}{(}\PYG{p}{[}\PYG{n}{param\PYGZus{}inputs}\PYG{p}{,}\PYG{n}{alloutputs}\PYG{p}{]}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{n}{inout}\PYG{o}{.}\PYG{n}{head}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[22]:\,\hspace{\fboxrule}\hspace{\fboxsep}}   f\_sI\_xc  f\_xI\_xc  f\_ch\_xc  f\_pr\_xc  f\_li\_xc     N\_xc      N\_I     N\_aa  \textbackslash{}
+0  0.09116  0.27346  0.21535  0.21711  0.27475  0.00251  0.00420  0.00736
+1  0.09692  0.25605  0.18183  0.21486  0.27367  0.00293  0.00450  0.00648
+2  0.09653  0.25089  0.18351  0.19403  0.22666  0.00246  0.00420  0.00649
+3  0.09891  0.25074  0.19437  0.20372  0.23318  0.00263  0.00468  0.00666
+4  0.10742  0.26412  0.20268  0.20954  0.26893  0.00263  0.00414  0.00723
+
+      C\_xc     C\_sI  {\ldots}     Alk       NH3       NH4     LCFA    percentch4   \textbackslash{}
+0  0.02895  0.02792  {\ldots}  8909.63   9.53919  1060.990  61.5561       56.0945
+1  0.02930  0.02715  {\ldots}  7707.69  10.88420   927.238  56.1139       62.1148
+2  0.02824  0.03114  {\ldots}  7873.10   8.67396   927.390  68.2248       58.8253
+3  0.02873  0.02895  {\ldots}  7961.45  10.83540   953.650  64.3854       57.4965
+4  0.02958  0.03157  {\ldots}  8755.37  10.43910  1081.950  67.7978       56.9557
+
+    energych4   efficiency   VFA/ALK        ACN  sampleT
+0      65.7436     52.8869  0.222452    87.1484  25.3731
+1      62.3272     55.0303  0.147138   654.5290  25.3731
+2      64.9817     54.1026  0.191081   196.3670  25.3731
+3      66.4942     55.2003  0.118815 -1663.6400  25.3731
+4      64.9350     53.1639  0.222974    94.6821  25.3731
+
+[5 rows x 159 columns]
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{corr}\PYG{o}{=}\PYG{n}{inout}\PYG{o}{.}\PYG{n}{corr}\PYG{p}{(}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{25}\PYG{p}{,}\PYG{l+m+mi}{15}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{sns}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{corr}\PYG{o}{.}\PYG{n}{iloc}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{92}\PYG{p}{,}\PYG{l+m+mi}{92}\PYG{p}{:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{n}{sns}\PYG{o}{.}\PYG{n}{diverging\PYGZus{}palette}\PYG{p}{(}\PYG{l+m+mi}{220}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{as\PYGZus{}cmap}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Correlation Matrix [params/results]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Parameters}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Outputs}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{16}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}Text(0.5, 113.09375, 'Outputs')
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=1379\sphinxpxdimen,height=936\sphinxpxdimen]{{jupyter_notebook_io_sensitivity_analysis_27_1}.png}
+
+\end{nbsphinxfancyoutput}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\end{sphinxVerbatim}
+}
+
+
+\subsection{ADM1F SRT: Synthetic Model\sphinxhyphen{}Data Calibration}
+\label{\detokenize{jupyter_notebook/parameter-calibration:ADM1F-SRT:-Synthetic-Model-Data-Calibration}}\label{\detokenize{jupyter_notebook/parameter-calibration::doc}}
+\sphinxAtStartPar
+Authors: Wenjuan Zhang and Elchin Jafarov
+
+\sphinxAtStartPar
+Before starting model clibration some additional softwares needs to be installed
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\item {} 
+\sphinxAtStartPar
+Install Julia
+
+\item {} 
+\sphinxAtStartPar
+Install Mads
+
+\end{enumerate}
+\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+“import Pkg; Pkg.add(”Mads“)” \sphinxhyphen{}\textgreater{} this command should be enough
+
+\item {} 
+\sphinxAtStartPar
+Mads github page is \sphinxurl{https://github.com/madsjulia/Mads.jl}
+
+\item {} 
+\sphinxAtStartPar
+Mads documentation documentation page is \sphinxurl{http://madsjulia.github.io/Mads.jl/}
+
+\end{itemize}
+\begin{enumerate}
+\sphinxsetlistlabels{\arabic}{enumi}{enumii}{}{.}%
+\setcounter{enumi}{2}
+\item {} 
+\sphinxAtStartPar
+To use jupyter notebook to display Julia, add JuliaHub, check this page \sphinxurl{https://juliahub.com/ui/Packages/IJulia/nfu7T/1.23.1}
+
+\end{enumerate}
+
+
+\subsubsection{1. Sensitivity of the model output to parameter changes}
+\label{\detokenize{jupyter_notebook/parameter-calibration:1.-Sensitivity-of-the-model-output-to-parameter-changes}}
+\sphinxAtStartPar
+Before starting model clibration we need to make sure that results are senstive to the parameter changes.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k}{import} \PYG{n}{Mads}
+\PYG{k}{import} \PYG{n}{DelimitedFiles}
+\PYG{k}{import} \PYG{n}{OrderedCollections}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{} check if you are in the right folder}
+\PYG{n}{pwd}\PYG{p}{(}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}"/Users/elchin/project/ADM1F\_WM/calibration"
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{} navigate to the calibration folder}
+\PYG{n}{cd}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{/}\PYG{l+s}{U}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{/}\PYG{l+s}{e}\PYG{l+s}{l}\PYG{l+s}{c}\PYG{l+s}{h}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{/}\PYG{l+s}{p}\PYG{l+s}{r}\PYG{l+s}{o}\PYG{l+s}{j}\PYG{l+s}{e}\PYG{l+s}{c}\PYG{l+s}{t}\PYG{l+s}{/}\PYG{l+s}{A}\PYG{l+s}{D}\PYG{l+s}{M}\PYG{l+s}{1}\PYG{l+s}{F}\PYG{l+s}{\PYGZus{}}\PYG{l+s}{W}\PYG{l+s}{M}\PYG{l+s}{/}\PYG{l+s}{c}\PYG{l+s}{a}\PYG{l+s}{l}\PYG{l+s}{i}\PYG{l+s}{b}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{} passing \PYGZdq{}tim.mads\PYGZdq{} to the Mads. \PYGZdq{}tim.mads\PYGZdq{} includes the \PYGZdq{}tim.jl\PYGZdq{} that executes the}
+\PYG{c}{\PYGZsh{} ADM1F model and saves seven outputs of interest.}
+\PYG{n}{filename} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{m}\PYG{l+s}{.}\PYG{l+s}{m}\PYG{l+s}{a}\PYG{l+s}{d}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}
+\PYG{n}{md} \PYG{o}{=} \PYG{n}{Mads}\PYG{o}{.}\PYG{n}{loadmadsfile}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}Dict\{String,Any\} with 4 entries:
+  "Parameters"    => OrderedCollections.OrderedDict\{String,OrderedCollections.O…
+  "Observations"  => OrderedCollections.OrderedDict\{String,OrderedCollections.O…
+  "Julia command" => "./tim.jl"
+  "Filename"      => "tim.mads"
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{} run the model with the default pamaters from \PYGZdq{}tim.mads\PYGZdq{}}
+\PYG{c}{\PYGZsh{} we denote the synthetic truth/observations}
+\PYG{n}{output\PYGZus{}truth}\PYG{o}{=}\PYG{n}{Mads}\PYG{o}{.}\PYG{n}{forward}\PYG{p}{(}\PYG{n}{md}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}OrderedCollections.OrderedDict\{Any,Float64\} with 7 entries:
+  "o2" => 145.362
+  "o3" => 48.578
+  "o1" => 363.333
+  "o4" => 35.1163
+  "o5" => 11.6628
+  "o6" => 6.51573
+  "o7" => 3.04116e-312
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{} the variables in the dictinary that have \PYGZdq{}type\PYGZdq{} equal to \PYGZdq{}opt\PYGZdq{} will participate in the}
+\PYG{c}{\PYGZsh{} model\PYGZhy{}data calibration}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{c}{\PYGZsh{}[\PYGZdq{}init\PYGZdq{}]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}OrderedCollections.OrderedDict\{String,Any\} with 4 entries:
+  "init" => 0.5
+  "max"  => 0.6
+  "min"  => 0.4
+  "type" => "opt"
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{Mads}\PYG{o}{.}\PYG{n}{showobservations}\PYG{p}{(}\PYG{n}{md}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+o1         target =          43.524 weight =               1
+o2         target =         19.1588 weight =               1
+o3         target =         6.23771 weight =               1
+o4         target =         0.00779 weight =               1
+o5         target =               0 weight =               1
+o6         target =         6.87726 weight =               1
+o7         target =         0.63904 weight =               1
+Number of observations is 7
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{} set observations equal to model runs with md[\PYGZdq{}Parameters\PYGZdq{}][\PYGZdq{}p48\PYGZdq{}][init]=0.5}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{O}\PYG{l+s}{b}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{v}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{1}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{g}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{n}{output\PYGZus{}truth}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{1}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{O}\PYG{l+s}{b}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{v}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{2}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{g}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{n}{output\PYGZus{}truth}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{2}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{O}\PYG{l+s}{b}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{v}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{3}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{g}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{n}{output\PYGZus{}truth}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{3}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{O}\PYG{l+s}{b}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{v}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{g}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{n}{output\PYGZus{}truth}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{O}\PYG{l+s}{b}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{v}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{5}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{g}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{n}{output\PYGZus{}truth}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{5}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{O}\PYG{l+s}{b}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{v}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{6}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{g}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{n}{output\PYGZus{}truth}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{6}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{O}\PYG{l+s}{b}\PYG{l+s}{s}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{v}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{o}\PYG{l+s}{n}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{7}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{g}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{n}{output\PYGZus{}truth}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{7}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}3.04116075262e-312
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{} new synthetic observations}
+\PYG{n}{Mads}\PYG{o}{.}\PYG{n}{showobservations}\PYG{p}{(}\PYG{n}{md}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+o1         target =         363.333 weight =               1
+o2         target =         145.362 weight =               1
+o3         target =          48.578 weight =               1
+o4         target =         35.1163 weight =               1
+o5         target =         11.6628 weight =               1
+o6         target =         6.51573 weight =               1
+o7         target =    3.04116e-312 weight =               1
+Number of observations is 7
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[27]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{}find out how many parameters are opt\PYGZhy{}in}
+\PYG{k}{for} \PYG{n}{i} \PYG{k+kp}{in} \PYG{l+m+mi}{1}\PYG{o}{:}\PYG{l+m+mi}{100}
+    \PYG{n}{s1}\PYG{o}{=}\PYG{n}{string}\PYG{o}{.}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}
+    \PYG{n}{s2}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{\PYGZdq{}}
+    \PYG{k}{if} \PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{n}{s2}\PYG{o}{*}\PYG{n}{s1}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{y}\PYG{l+s}{p}\PYG{l+s}{e}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{==}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{p}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}
+        \PYG{n}{println}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}
+        \PYG{n}{println}\PYG{p}{(}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{n}{s2}\PYG{o}{*}\PYG{n}{s1}\PYG{p}{]}\PYG{p}{)}
+    \PYG{k}{end}
+\PYG{k}{end}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+48
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.41,"max" => 0.6,"min" => 0.4,"type" => "opt")
+54
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.031,"max" => 0.045599999999999995,"min" => 0.0304,"type" => "opt")
+60
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.013,"max" => 0.018,"min" => 0.012,"type" => "opt")
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+Two paramaters are opt\sphinxhyphen{}in from the tim.mads. This file can be changed manually or here by chaning the initial value (\sphinxcode{\sphinxupquote{init}}) to a slightly different one.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{}let\PYGZsq{}s opt\PYGZhy{}in a new parameter}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{y}\PYG{l+s}{p}\PYG{l+s}{e}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{o}\PYG{l+s}{p}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}} \PYG{c}{\PYGZsh{}K\PYGZus{}S\PYGZus{}fa}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}OrderedCollections.OrderedDict\{String,Any\} with 4 entries:
+  "init" => 0.032
+  "max"  => 0.0456
+  "min"  => 0.0304
+  "type" => "opt"
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{println}\PYG{p}{(}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.55,"max" => 0.6,"min" => 0.4,"type" => "opt")
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.017,"max" => 0.018,"min" => 0.012,"type" => "opt")
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.032,"max" => 0.045599999999999995,"min" => 0.0304,"type" => "opt")
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[31]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{}change to new initial values}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{i}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mf}{0.58}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{i}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mf}{0.0165} \PYG{c}{\PYGZsh{}K\PYGZus{}S\PYGZus{}pro}
+\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{i}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{o}{=}\PYG{l+m+mf}{0.045}
+\PYG{n}{println}\PYG{p}{(}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.58,"max" => 0.6,"min" => 0.4,"type" => "opt")
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.0165,"max" => 0.018,"min" => 0.012,"type" => "opt")
+OrderedCollections.OrderedDict\{String,Any\}("init" => 0.045,"max" => 0.045599999999999995,"min" => 0.0304,"type" => "opt")
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{}we can also change the boundary of the allowed interval}
+\PYG{c}{\PYGZsh{}md[\PYGZdq{}Parameters\PYGZdq{}][\PYGZdq{}p48\PYGZdq{}][\PYGZdq{}init\PYGZdq{}]=0.59}
+\PYG{c}{\PYGZsh{}md[\PYGZdq{}Parameters\PYGZdq{}][\PYGZdq{}p48\PYGZdq{}][\PYGZdq{}max\PYGZdq{}]=0.7}
+\PYG{c}{\PYGZsh{}md[\PYGZdq{}Parameters\PYGZdq{}][\PYGZdq{}p48\PYGZdq{}][\PYGZdq{}min\PYGZdq{}]=0.35}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}0.35
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{}rerun the model and compare the results with the previous forward run}
+\PYG{n}{output1}\PYG{o}{=}\PYG{n}{Mads}\PYG{o}{.}\PYG{n}{forward}\PYG{p}{(}\PYG{n}{md}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[32]:\,\hspace{\fboxrule}\hspace{\fboxsep}}OrderedCollections.OrderedDict\{Any,Float64\} with 7 entries:
+  "o2" => 145.06
+  "o3" => 48.3842
+  "o1" => 363.488
+  "o4" => 35.0174
+  "o5" => 11.6574
+  "o6" => 6.51656
+  "o7" => -1.14602e-312
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+“o2” =\textgreater{} 145.362 “o3” =\textgreater{} 48.578 “o1” =\textgreater{} 363.333 “o4” =\textgreater{} 35.1163 “o5” =\textgreater{} 11.6628 “o6” =\textgreater{} 6.51573 “o7” =\textgreater{} 3.04116e\sphinxhyphen{}312
+
+
+\subsubsection{2. Model Calibration}
+\label{\detokenize{jupyter_notebook/parameter-calibration:2.-Model-Calibration}}
+\sphinxAtStartPar
+Once the sensitivity of the model outputs to changes in model parameters are established we can start the calibration. The elaborated sensitivy analysis is required, for an in\sphinxhyphen{}depth model calibration.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[34]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{p}\PYG{p}{,} \PYG{n}{r} \PYG{o}{=} \PYG{n}{Mads}\PYG{o}{.}\PYG{n}{calibraterandom}\PYG{p}{(}\PYG{n}{md}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[34]:\,\hspace{\fboxrule}\hspace{\fboxsep}}(OrderedCollections.OrderedDict("p1" => 0.09060657861205099,"p2" => 0.2964692632944874,"p3" => 0.18538822521329718,"p4" => 0.21021796952211014,"p5" => 0.20993757892890663,"p6" => 0.0025810430070856297,"p7" => 0.004153144361053321,"p8" => 0.006812701647314224,"p9" => 0.029624259152454625,"p10" => 0.028993549342676592…), OptimBase.MultivariateOptimizationResults\{LsqFit.LevenbergMarquardt,Float64,1\}(LsqFit.LevenbergMarquardt(), [-0.4889181593485484, 1.1927438925052574, -0.3739490066652115, 0.2583123288342893, -0.9293788161320726, -0.8970848356758778, -0.6686810831789546, -0.5646712759835035, 0.3221739693428631, -0.16853854003002233  …  -0.515933804055272, -0.9755102180590636, -1.1189154560307426, 1.0593944723620046, 0.1384639308865269, -0.5026261086108612, -0.012128162836436718, 0.28788576425004025, -0.0029143278533535384, -1.1138366569543616], [-0.4889181593485484, 1.1927438925052574, -0.3739490066652115, 0.2583123288342893, -0.9293788161320726, -0.8970848356758778, -0.6686810831789546, -0.5646712759835035, 0.3221739693428631, -0.16853854003002233  …  -0.515933804055272, -0.9755102180590636, -1.1189154560307426, 1.0593944723620046, 0.1384639308865269, -0.5026261086108612, -0.012128162836436718, 0.28788576425004025, -0.0029143278533535384, -1.1138366569543616], 150.99483823310115, 10, true, false, 0.0001, 0.0, false, 0.001, 0.0, false, 1.0e-6, 0.0, false, Iter     Function value   Gradient norm
+------   --------------   --------------
+, 1101, 10, 0))
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[35]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{Mads}\PYG{o}{.}\PYG{n}{showobservations}\PYG{p}{(}\PYG{n}{md}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+o1         target =         363.333 weight =               1
+o2         target =         145.362 weight =               1
+o3         target =          48.578 weight =               1
+o4         target =         35.1163 weight =               1
+o5         target =         11.6628 weight =               1
+o6         target =         6.51573 weight =               1
+o7         target =    3.04116e-312 weight =               1
+Number of observations is 7
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[52]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{i}\PYG{l+s}{t}\PYG{l+s}{i}\PYG{l+s}{a}\PYG{l+s}{l}\PYG{l+s}{ }\PYG{l+s}{g}\PYG{l+s}{u}\PYG{l+s}{e}\PYG{l+s}{s}\PYG{l+s}{s}\PYG{l+s}{:}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{i}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{i}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{md}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{P}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{i}\PYG{l+s}{n}\PYG{l+s}{i}\PYG{l+s}{t}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{c}\PYG{l+s}{a}\PYG{l+s}{l}\PYG{l+s}{i}\PYG{l+s}{b}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{d}\PYG{l+s}{ }\PYG{l+s}{p}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{:}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{round}\PYG{p}{(}\PYG{n}{p}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{digits}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{round}\PYG{p}{(}\PYG{n}{p}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{digits}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{round}\PYG{p}{(}\PYG{n}{p}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{,}\PYG{n}{digits}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{ }\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{t}\PYG{l+s}{r}\PYG{l+s}{u}\PYG{l+s}{e}\PYG{l+s}{ }\PYG{l+s}{p}\PYG{l+s}{a}\PYG{l+s}{r}\PYG{l+s}{a}\PYG{l+s}{m}\PYG{l+s}{e}\PYG{l+s}{t}\PYG{l+s}{e}\PYG{l+s}{r}\PYG{l+s}{s}\PYG{l+s}{:}\PYG{l+s}{\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{4}\PYG{l+s}{8}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{l+m+mf}{0.41}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{6}\PYG{l+s}{0}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{l+m+mf}{0.013}\PYG{p}{)}
+\PYG{n}{println}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{p}\PYG{l+s}{5}\PYG{l+s}{4}\PYG{l+s}{=}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,}\PYG{l+m+mf}{0.031}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+initial guess:
+p48=0.58
+p60=0.0165
+p54=0.045
+
+calibrated parameters:
+p48=0.486
+p60=0.013
+p54=0.039
+
+true parameters:
+p48=0.41
+p60=0.013
+p54=0.031
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[51]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c}{\PYGZsh{}Only plot the outputs which participate in this match}
+
+\PYG{n}{est} \PYG{o}{=} \PYG{n}{Mads}\PYG{o}{.}\PYG{n}{forward}\PYG{p}{(}\PYG{n}{md}\PYG{p}{,} \PYG{n}{p}\PYG{p}{)}\PYG{p}{;}
+\PYG{n}{obs} \PYG{o}{=} \PYG{n}{Mads}\PYG{o}{.}\PYG{n}{getobstarget}\PYG{p}{(}\PYG{n}{md}\PYG{p}{)}\PYG{p}{;}
+
+\PYG{n}{idx\PYGZus{}out} \PYG{o}{=} \PYG{n}{collect}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{l+m+mi}{1}\PYG{o}{:}\PYG{l+m+mi}{7}\PYG{p}{)}
+\PYG{n}{key\PYGZus{}out} \PYG{o}{=} \PYG{p}{[}\PYG{n}{string}\PYG{p}{(}\PYG{l+s+sc}{\PYGZsq{}o\PYGZsq{}}\PYG{p}{,}\PYG{n}{i}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{k+kp}{in} \PYG{n}{idx\PYGZus{}out}\PYG{p}{]}
+
+\PYG{n}{est\PYGZus{}filt} \PYG{o}{=} \PYG{p}{[}\PYG{n}{est}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{k+kp}{in} \PYG{n}{key\PYGZus{}out}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{obs\PYGZus{}filt} \PYG{o}{=} \PYG{p}{[}\PYG{n}{obs}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{k+kp}{in} \PYG{n}{idx\PYGZus{}out}\PYG{p}{]}\PYG{p}{;}
+\PYG{n}{Mads}\PYG{o}{.}\PYG{n}{plotseries}\PYG{p}{(}\PYG{p}{[}\PYG{n}{obs\PYGZus{}filt} \PYG{n}{est\PYGZus{}filt}\PYG{p}{]}\PYG{p}{;} \PYG{n}{names}\PYG{o}{=}\PYG{p}{[}\PYG{l+s}{\PYGZdq{}}\PYG{l+s}{T}\PYG{l+s}{r}\PYG{l+s}{u}\PYG{l+s}{t}\PYG{l+s}{h}\PYG{l+s}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}}\PYG{l+s}{E}\PYG{l+s}{s}\PYG{l+s}{t}\PYG{l+s}{.}\PYG{l+s}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics{{jupyter_notebook_parameter-calibration_24_0}.svg}
+
+\end{nbsphinxfancyoutput}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[ ]:\,\hspace{\fboxrule}\hspace{\fboxsep}}
+\end{sphinxVerbatim}
+}
+
+
+\subsection{PH Control}
+\label{\detokenize{jupyter_notebook/phcontrol:ph-control}}\label{\detokenize{jupyter_notebook/phcontrol::doc}}
+\sphinxAtStartPar
+The two\sphinxhyphen{}phase AnDMBR simulates a rumen environment to enhance the rates of hydrolysis and acidogenesis. A large amount of volatile fatty acids that decreases PH is produced, which could lead to digester failure. In real\sphinxhyphen{}life conditions, sodium hydroxide is added into the first\sphinxhyphen{}phase reactor. This maintains a PH around 6.3 and ensures optimal microbial activities, which is similar to the rumen reactor of a cow. Similarly, the PH in the second\sphinxhyphen{}phase methane\sphinxhyphen{}producing AnDMBR is maintained at 7.2 to provide optimal reactor functionality. In the AnDMBR model, we retain the appropriate levels of PH within each reactor phase by adding corresponding cation mass, which is estimated via the data consistent inversion method %
+\begin{footnote}[1]\sphinxAtStartFootnote
+\sphinxhref{https://epubs.siam.org/doi/abs/10.1137/16M1087229?mobileUi=0}{T. Butler and J. Jakeman and T. Wildey, Combining Push\sphinxhyphen{}Forward Measures and Bayes’ Rule to Construct Consistent Solutions to Stochastic Inverse Problems, SIAM Journal on Scientific Computing, 40, A984\sphinxhyphen{}A1011 (2018).}
+%
+\end{footnote}. The cation amount can then be used to calculate the amount of sodium hydroxide in real implementation. The method and more in\sphinxhyphen{}depth mathematical description of the \sphinxtitleref{ph\sphinxhyphen{}control} methods can be found in Dr. Zhang’s Ph.D. thesis.
+
+\sphinxAtStartPar
+\sphinxstylestrong{Data Consistent Inversion Method}
+
+\sphinxAtStartPar
+Data consistent inversion method is used here to determine the cation needed to adjust the PH level in the reactor. It is first introduced for uncertainty quantification in inverse problems in \sphinxfootnotemark[1] where the ideas and derivations behind it were discussed in great detail. Since the goal here is to solve the inverse problem where target PH, \(\mu^*\), can be achieved, we can apply this method to our model. Our goal here is to control the PH in the reactor within an acceptable range. We denote the target PH value by \(\mu^*\), a small deviation is allowed around \(\mu^*\) to meet real\sphinxhyphen{}life conditions.
+
+\sphinxAtStartPar
+Gaussian (or normal) distribution denoted by \(N(\mu, \sigma^2)\) has a property that
+there is a probability of 99.73\% that its observation denoted by \(X\) will lie within three standard deviations (\(3\sigma\)) of the mean (\(\mu\)). This is the so\sphinxhyphen{}called three\sphinxhyphen{}sigma rule of thumb, to write it in mathematical notation cite\{3sigma\},
+\begin{equation*}
+\begin{split}P(\mu-3\sigma \leq X \leq \mu+3\sigma) \approx 99.73\%.\end{split}
+\end{equation*}
+\sphinxAtStartPar
+We would like to use this special property of Gaussian distribution to achieve a high chance of predicted PH being in the three standard deviations of \(\mu^*\). Therefore we assume that our predicted PH value follows a Gaussian distribution %
+\begin{footnote}[2]\sphinxAtStartFootnote
+We can also assume different distributions for PH.
+%
+\end{footnote}, \(N(\mu^*, \sigma^2)\). We first propose an initial probability  density function (pdf) of cationfootnote\{A uniform distribution \(U(0,0.2)\) is assumed in our model.\}, then the data consistent inversion method is applied to update the pdf  of cation such that the pdf of \(N(\mu^*, \sigma^2)\) is returned when the updated pdf is propagated through the model.
+
+\sphinxAtStartPar
+The following figure describes the relation between cation density, model and PH density.
+
+\noindent\sphinxincludegraphics[width=1005\sphinxpxdimen,height=361\sphinxpxdimen]{{pdftonormal}.png}
+
+\sphinxAtStartPar
+The methodology of data consistent inversion %
+\begin{footnote}[3]\sphinxAtStartFootnote
+Assumptions are not discussed here for the ease of explanation.
+%
+\end{footnote} guarantees that when a sample of the updated pdf of cation is put in the model input, there is a probability of 99.73\% that the predicted PH will be within three standard deviations around \(\mu^*\) (grey area). It is straightforward to get the conclusion  that the smaller \(\sigma\) we choose in \(N(\mu^*, \sigma^2)\), the more accurate the PH will be.
+
+
+\subsubsection{PH Control for One\sphinxhyphen{}Phase and Two\sphinxhyphen{}Phase Reactor}
+\label{\detokenize{jupyter_notebook/ph12:ph-control-for-one-phase-and-two-phase-reactor}}\label{\detokenize{jupyter_notebook/ph12::doc}}
+\sphinxAtStartPar
+Phase 1 of the digester represents the condition where membrane blocks the solid materials that are part of the effluent. Here we setup the corresponding SRT to define the time required for the solids to dilute in phase 1. As mentioned above, during this phase VFAs are produced, which reduces the ph of the digester.
+
+\sphinxAtStartPar
+To prevent the ph from further decreasing, we developed the ph\sphinxhyphen{}control algorithm that allows us to adjust the ph at the beginning of each phase.
+Implemented in this study ph\sphinxhyphen{}control method (see \sphinxcode{\sphinxupquote{ph\_control}} function in  \sphinxcode{\sphinxupquote{adm1f\_utils.py}}) is designed to implement data consistent inversion method in PH control (described in the section below). The \sphinxcode{\sphinxupquote{ph}} method can be used to predict the PH value. The \sphinxcode{\sphinxupquote{ph\_control}} method is used to return the cation concentration to be changed in the input in order to reach the target PH value (\(\mu^*\)). \(\sigma\) is used to denote the standard deviation we allow the PH value to vary around \(\mu^*\).
+
+\sphinxAtStartPar
+The following figure describes the basic strategy used for PH control
+
+\noindent\sphinxincludegraphics[width=559\sphinxpxdimen,height=416\sphinxpxdimen]{{phcontrol}.png}
+
+\sphinxAtStartPar
+The idea can also be explained in the following flow chart
+
+\noindent\sphinxincludegraphics[width=1520\sphinxpxdimen,height=1140\sphinxpxdimen]{{flow1}.png}
+
+\sphinxAtStartPar
+Similar idea can then be applied to the two\sphinxhyphen{}phase reactor. We can configure the two\sphinxhyphen{}phase reactor where volume, flow rate, t\_resx (t\_resx = SRT\sphinxhyphen{}HRT) of each phase can be set manually to simulate the real reactor. The implementations in both phase 1 and 2 are similar to the above implementation in the one\sphinxhyphen{}phase reactor, the only difference is that the output of phase 1 is now the input of phase 2.
+
+\sphinxAtStartPar
+In the {\hyperref[\detokenize{jupyter_notebook/ph-control::doc}]{\sphinxcrossref{\DUrole{doc}{Ipython notebook}}}}, \sphinxcode{\sphinxupquote{reactor\_cat(target\_1, target\_2, **kwargs)}} function is used to calculate the corresponding cation for each phase in order to control the PH level for each phase. Note that the target PH for phase 1 and 2 (target\_1, target\_2) can be set different when using this function under the corresponding configurations.
+
+
+\subsubsection{ADM1F\_SRT: Ph control method}
+\label{\detokenize{jupyter_notebook/ph-control:ADM1F_SRT:-Ph-control-method}}\label{\detokenize{jupyter_notebook/ph-control::doc}}
+\sphinxAtStartPar
+The \sphinxcode{\sphinxupquote{ph control}} method was developed by Wenjuan Zhang and uses Data Consistent Inversion Method.
+
+\sphinxAtStartPar
+Authors: Wenjuan Zhang and Elchin Jafarov
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[1]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{adm1f\PYGZus{}utils} \PYG{k}{as} \PYG{n+nn}{adm1fu}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{scipy}\PYG{n+nn}{.}\PYG{n+nn}{stats} \PYG{k+kn}{import} \PYG{n}{norm}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{o}{\PYGZpc{}}\PYG{k}{matplotlib} inline
+\end{sphinxVerbatim}
+}
+
+
+\paragraph{1. Relation between cation and PH}
+\label{\detokenize{jupyter_notebook/ph-control:1.-Relation-between-cation-and-PH}}
+\sphinxAtStartPar
+Here we explore the cation/ph relationships using diffrerent configurations. Note, based in the results will be different based on the ADM1F code version (i.e. original or SRT).
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[2]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} navigate to simulations folder}
+\PYG{n}{os}\PYG{o}{.}\PYG{n}{chdir}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../../simulations}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[3]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Configuration of the one\PYGZhy{}phase reactor}
+\PYG{n}{config\PYGZus{}default} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Vliq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{t\PYGZus{}resx}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Q}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{134}\PYG{p}{\PYGZcb{}}
+\PYG{n}{config1} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Vliq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{340}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{t\PYGZus{}resx}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Q}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{618}\PYG{p}{\PYGZcb{}}
+\PYG{n}{config2} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Vliq}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{t\PYGZus{}resx}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{700}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Q}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}\PYG{l+m+mi}{618}\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Configurations}
+
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|T|T|}
+\hline
+\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Configuration
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Vliq (m\(^3\))
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+t\_resx (d)
+&\sphinxstyletheadfamily 
+\sphinxAtStartPar
+Q (m\(^3\)/d)
+\\
+\hline
+\sphinxAtStartPar
+Sherri’s (default)
+&
+\sphinxAtStartPar
+3400
+&
+\sphinxAtStartPar
+0
+&
+\sphinxAtStartPar
+134
+\\
+\hline
+\sphinxAtStartPar
+Phase 1
+&
+\sphinxAtStartPar
+340
+&
+\sphinxAtStartPar
+1.5
+&
+\sphinxAtStartPar
+618
+\\
+\hline
+\sphinxAtStartPar
+Phase 2
+&
+\sphinxAtStartPar
+3400
+&
+\sphinxAtStartPar
+700
+&
+\sphinxAtStartPar
+618/—
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+\sphinxAtStartPar
+where t\_resx = SRT \sphinxhyphen{} HRT
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[4]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} check if file exsits read from file}
+\PYG{c+c1}{\PYGZsh{} otherwise run the simulations with different cations `cat\PYGZus{}test`}
+\PYG{n}{cat\PYGZus{}test} \PYG{o}{=} \PYG{p}{[}\PYG{n}{i}\PYG{o}{*}\PYG{l+m+mf}{0.001} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{200}\PYG{p}{)}\PYG{p}{]}
+
+\PYG{n}{filename}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data/no\PYGZhy{}configuration.dat}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{k}{if} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{check\PYGZus{}filename}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{ph\PYGZus{}test} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{loadtxt}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
+\PYG{k}{else}\PYG{p}{:}
+    \PYG{n}{ph\PYGZus{}test} \PYG{o}{=} \PYG{p}{[}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config\PYGZus{}default}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{cat\PYGZus{}test}\PYG{p}{]}
+    \PYG{n}{np}\PYG{o}{.}\PYG{n}{savetxt}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{,} \PYG{n}{ph\PYGZus{}test}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}5.6f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Relation b/t cation and Ph under Sherri’s config}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[5]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Relation b/t cation and Ph under Sherri\PYGZsq{}s config}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{cat\PYGZus{}test}\PYG{p}{,} \PYG{n}{ph\PYGZus{}test}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{yticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Cation (kmole/m3)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Sherri}\PYG{l+s+s2}{\PYGZsq{}}\PYG{l+s+s2}{s configuration}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=733\sphinxpxdimen,height=348\sphinxpxdimen]{{jupyter_notebook_ph-control_8_0}.png}
+
+\end{nbsphinxfancyoutput}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Relation b/t cation and Ph under Phase 1 config}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[6]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{filename}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data/configuration1.dat}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{k}{if} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{check\PYGZus{}filename}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{ph\PYGZus{}test\PYGZus{}config1} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{loadtxt}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
+\PYG{k}{else}\PYG{p}{:}
+    \PYG{n}{ph\PYGZus{}test\PYGZus{}config1} \PYG{o}{=} \PYG{p}{[}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config1}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{cat\PYGZus{}test}\PYG{p}{]}
+    \PYG{n}{np}\PYG{o}{.}\PYG{n}{savetxt}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{,} \PYG{n}{ph\PYGZus{}test\PYGZus{}config1}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}5.6f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[7]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{cat\PYGZus{}test}\PYG{p}{,} \PYG{n}{ph\PYGZus{}test\PYGZus{}config1}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{yticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Cation (kmole/m3)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Phase 1 Configuration with only cation being changed}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=733\sphinxpxdimen,height=348\sphinxpxdimen]{{jupyter_notebook_ph-control_11_0}.png}
+
+\end{nbsphinxfancyoutput}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Relation b/t cation and Ph under Phase 2 config}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[8]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{filename}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data/configuration2.dat}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{k}{if} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{check\PYGZus{}filename}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}\PYG{p}{:}
+    \PYG{n}{ph\PYGZus{}test\PYGZus{}config2} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{loadtxt}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{)}
+\PYG{k}{else}\PYG{p}{:}
+    \PYG{n}{ph\PYGZus{}test\PYGZus{}config2} \PYG{o}{=} \PYG{p}{[}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config2}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{cat\PYGZus{}test}\PYG{p}{]}
+    \PYG{n}{np}\PYG{o}{.}\PYG{n}{savetxt}\PYG{p}{(}\PYG{n}{filename}\PYG{p}{,} \PYG{n}{ph\PYGZus{}test\PYGZus{}config2}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZpc{}5.6f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[9]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{12}\PYG{p}{,}\PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{scatter}\PYG{p}{(}\PYG{n}{cat\PYGZus{}test}\PYG{p}{,} \PYG{n}{ph\PYGZus{}test\PYGZus{}config2}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{yticks}\PYG{p}{(}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{PH}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Cation (kmole/m3)}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Phase 2 Configuration 2 with only cation being changed}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}\PYG{n}{fontsize}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{)}\PYG{p}{;}
+\end{sphinxVerbatim}
+}
+
+\hrule height -\fboxrule\relax
+\vspace{\nbsphinxcodecellspacing}
+
+\makeatletter\setbox\nbsphinxpromptbox\box\voidb@x\makeatother
+
+\begin{nbsphinxfancyoutput}
+
+\noindent\sphinxincludegraphics[width=733\sphinxpxdimen,height=348\sphinxpxdimen]{{jupyter_notebook_ph-control_14_0}.png}
+
+\end{nbsphinxfancyoutput}
+
+
+\paragraph{2. PH: one\sphinxhyphen{}phase reactor}
+\label{\detokenize{jupyter_notebook/ph-control:2.-PH:-one-phase-reactor}}
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[10]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{old\PYGZus{}ph0} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Predicted PH is }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ if using the original cation value }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{old\PYGZus{}ph0}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{old\PYGZus{}ph0}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, ph phase-one:
+\$ADM1F\_EXE -steady -influent\_file influent\_cur.dat
+Predicted PH is 6.91367 if using the original cation value 0
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[11]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{old\PYGZus{}ph1} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config1}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Predicted PH is }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ if using the original cation value }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{old\PYGZus{}ph1}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{old\PYGZus{}ph1}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, ph phase-one:
+\$ADM1F\_EXE -steady -influent\_file influent\_cur.dat -Vliq 340 -t\_resx 1.5
+Predicted PH is 4.57781 if using the original cation value 0
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[12]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{old\PYGZus{}ph2} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config2}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Predicted PH is }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ if using the original cation value }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{old\PYGZus{}ph2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{old\PYGZus{}ph2}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, ph phase-one:
+\$ADM1F\_EXE -steady -influent\_file influent\_cur.dat -Vliq 3400 -t\_resx 700
+Predicted PH is 7.05983 if using the original cation value 0
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Set Target:} Let’s calculate the amount of cation needed by the one\sphinxhyphen{}phase reactor to match required \sphinxcode{\sphinxupquote{ph}} targets using Data Consistent Inversion method.
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[13]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{k}{class} \PYG{n+nc}{target}\PYG{p}{:}
+    \PYG{k}{def} \PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,}\PYG{n}{ph}\PYG{p}{,}\PYG{n}{sig}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ph} \PYG{o}{=} \PYG{n}{ph}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sig} \PYG{o}{=} \PYG{n}{sig}
+    \PYG{k}{def} \PYG{n+nf}{pdf}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,}\PYG{n}{x}\PYG{p}{)}\PYG{p}{:}
+        \PYG{k}{return} \PYG{n}{norm}\PYG{o}{.}\PYG{n}{pdf}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{,}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{sig}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[14]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{} Give the necessary information}
+\PYG{c+c1}{\PYGZsh{} target\PYGZus{}ph = 6.5       \PYGZsh{} target\PYGZus{}ph: target PH value, target\PYGZus{}sig: allow some variations around target PH}
+\PYG{n}{target\PYGZus{}sig} \PYG{o}{=} \PYG{l+m+mf}{0.01}     \PYG{c+c1}{\PYGZsh{} The smaller this value is, the more accurate we will get in the end}
+\PYG{n}{sample\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{100}
+
+\PYG{n}{infl\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{influent.dat}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{n}{params\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{params.dat}\PYG{l+s+s1}{\PYGZsq{}}
+\PYG{n}{ic\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ic.dat}\PYG{l+s+s1}{\PYGZsq{}}
+
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{} Use data consistent inversion method to return the needed cation to get the target PH}
+\PYG{n}{init\PYGZus{}sample} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{random}\PYG{o}{.}\PYG{n}{uniform}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{l+m+mf}{0.2}\PYG{p}{,}\PYG{n}{sample\PYGZus{}size}\PYG{p}{)}   \PYG{c+c1}{\PYGZsh{}the more samples we generate, the more accurate we will get in the end}
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[15]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{target72} \PYG{o}{=} \PYG{n}{target}\PYG{p}{(}\PYG{l+m+mf}{7.2}\PYG{p}{,}\PYG{n}{target\PYGZus{}sig}\PYG{p}{)}
+\PYG{n}{target73} \PYG{o}{=} \PYG{n}{target}\PYG{p}{(}\PYG{l+m+mf}{7.3}\PYG{p}{,}\PYG{n}{target\PYGZus{}sig}\PYG{p}{)}
+\PYG{n}{target75} \PYG{o}{=} \PYG{n}{target}\PYG{p}{(}\PYG{l+m+mf}{7.5}\PYG{p}{,}\PYG{n}{target\PYGZus{}sig}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Target 1: target\_ph=7.2 with Sherri’s (default) configuration}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[16]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}\PYGZsh{} ph\PYGZus{}control accepts target, initial sample, number of cation values and file path of each input file}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{} ph\PYGZus{}control return the needed cation to get the target PH}
+\PYG{n}{cat\PYGZus{}tar72\PYGZus{}dc} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph\PYGZus{}control}\PYG{p}{(}\PYG{n}{target72}\PYG{p}{,}\PYG{n}{init\PYGZus{}sample}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{infl\PYGZus{}path}\PYG{p}{,}\PYG{n}{params\PYGZus{}path}\PYG{p}{,}\PYG{n}{ic\PYGZus{}path}\PYG{p}{,}\PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config\PYGZus{}default}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print out the Needed Cation value!!}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{The amount of cation in the reactor should be:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{cat\PYGZus{}tar72\PYGZus{}dc}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{kmole/m3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Predicted PH is 6.91367
+The amount of cation in the reactor should be: 0.07135066533871785 kmole/m3
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{p}{[}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config\PYGZus{}default}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{cat\PYGZus{}tar72\PYGZus{}dc}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, ph phase-one:
+\$ADM1F\_EXE -steady -influent\_file influent\_cur.dat -Vliq 3400 -t\_resx 0
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[17]:\,\hspace{\fboxrule}\hspace{\fboxsep}}[(7.18975, 0.07135066533871785)]
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Target 2: target\_ph=7.2 with configuration 1}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[18]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}\PYGZsh{} ph\PYGZus{}control accepts target, initial sample, number of cation values and file path of each input file}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{} pph\PYGZus{}control return the needed cation to get the target PH}
+\PYG{n}{cat\PYGZus{}tar72\PYGZus{}c1} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph\PYGZus{}control}\PYG{p}{(}\PYG{n}{target72}\PYG{p}{,}\PYG{n}{init\PYGZus{}sample}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{infl\PYGZus{}path}\PYG{p}{,}\PYG{n}{params\PYGZus{}path}\PYG{p}{,}\PYG{n}{ic\PYGZus{}path}\PYG{p}{,}\PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config1}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print out the Needed Cation value!!}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{The amount of cation in the reactor should be:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{cat\PYGZus{}tar72\PYGZus{}c1}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{kmole/m3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Predicted PH is 4.57781
+The amount of cation in the reactor should be: 0.19737738732010346 kmole/m3
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{p}{[}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config1}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{cat\PYGZus{}tar72\PYGZus{}c1}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, ph phase-one:
+\$ADM1F\_EXE -steady -influent\_file influent\_cur.dat -Vliq 340 -t\_resx 1.5
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[19]:\,\hspace{\fboxrule}\hspace{\fboxsep}}[(7.19608, 0.19737738732010346)]
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{Target 3: target\_ph=7.2 with configuration 2}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[20]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}\PYGZsh{} ph\PYGZus{}control accepts target, initial sample, number of cation values and file path of each input file}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{} ph\PYGZus{}control return the needed cation to get the target PH}
+\PYG{n}{cat\PYGZus{}tar72\PYGZus{}c2} \PYG{o}{=} \PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph\PYGZus{}control}\PYG{p}{(}\PYG{n}{target72}\PYG{p}{,}\PYG{n}{init\PYGZus{}sample}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{n}{infl\PYGZus{}path}\PYG{p}{,}\PYG{n}{params\PYGZus{}path}\PYG{p}{,}\PYG{n}{ic\PYGZus{}path}\PYG{p}{,}\PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print out the Needed Cation value!!}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{The amount of cation in the reactor should be:}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{cat\PYGZus{}tar72\PYGZus{}c2}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{kmole/m3}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Predicted PH is 7.05983
+The amount of cation in the reactor should be: 0.031198904067240532 kmole/m3
+\end{sphinxVerbatim}
+}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{p}{[}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{ph}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{o}{*}\PYG{o}{*}\PYG{n}{config2}\PYG{p}{)} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{cat\PYGZus{}tar72\PYGZus{}c2}\PYG{p}{]}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+Reactor run, ph phase-one:
+\$ADM1F\_EXE -steady -influent\_file influent\_cur.dat -Vliq 3400 -t\_resx 700
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxout}[21]:\,\hspace{\fboxrule}\hspace{\fboxsep}}[(7.20101, 0.031198904067240532)]
+\end{sphinxVerbatim}
+}
+
+
+\paragraph{3. PH: two\sphinxhyphen{}phase reactor}
+\label{\detokenize{jupyter_notebook/ph-control:3.-PH:-two-phase-reactor}}
+\sphinxAtStartPar
+\sphinxstylestrong{PH control for both phase 1 and phase 2}
+
+\sphinxAtStartPar
+reactor\_cat(target\_1=target1, target\_2=target2, Q1=1, Vliq1=1, t\_resx1=1, Q2=1, Vliq2=1, t\_res2=1)
+
+\sphinxAtStartPar
+\sphinxstylestrong{PH control for just phase 1 in two\sphinxhyphen{}phase reactor}
+
+\sphinxAtStartPar
+reactor\_cat(target\_1=target1, Q1=1, Vliq1=1, t\_resx1=1, Q2=1, Vliq2=1, t\_res2=1)
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[22]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{c+c1}{\PYGZsh{}\PYGZsh{} Configuration of two\PYGZhy{}phase reacotr}
+\PYG{c+c1}{\PYGZsh{} config12 = \PYGZob{}\PYGZdq{}Vliq1\PYGZdq{}:340, \PYGZdq{}Vliq2\PYGZdq{}:3400, \PYGZdq{}t\PYGZus{}resx1\PYGZdq{}:1.5, \PYGZdq{}t\PYGZus{}resx2\PYGZdq{}:700, \PYGZdq{}Q1\PYGZdq{}:618, \PYGZdq{}Q2\PYGZdq{}:618\PYGZcb{}}
+\PYG{n}{config12} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Vliq1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{340}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Vliq2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{t\PYGZus{}resx1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{t\PYGZus{}resx2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{700}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Q1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{618}\PYG{p}{\PYGZcb{}}
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{target\_ph1=7.5, target\_ph2=7.2 with default configuration12}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[23]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{config12} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Vliq1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{340}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Vliq2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{3400}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{t\PYGZus{}resx1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mf}{1.5}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{t\PYGZus{}resx2}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{700}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Q1}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}\PYG{l+m+mi}{618}\PYG{p}{\PYGZcb{}}
+\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor2\PYGZus{}cat}\PYG{p}{(}\PYG{n}{init\PYGZus{}sample}\PYG{p}{,}\PYG{n}{target\PYGZus{}1}\PYG{o}{=}\PYG{n}{target75}\PYG{p}{,}\PYG{n}{target\PYGZus{}2}\PYG{o}{=}\PYG{n}{target72}\PYG{p}{,}\PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config12}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+verbose: off
+Predicted PH is 4.57781
+\$ADM1F\_EXE -steady -Vliq 340 -t\_resx 1.5 -influent\_file influent\_cur.dat
+Phase 1, after changing cation to 0.197377 kmole/m3, new PH = 7.19608
+Predicted PH is 7.10724
+
+\$ADM1F\_EXE -steady -Vliq 3400 -t\_resx 700 -influent\_file influent\_cur.dat
+Phase 2, after changing cation to 0.017699 kmole/m3, new PH = 7.18887
+\end{sphinxVerbatim}
+}
+
+\sphinxAtStartPar
+\sphinxstylestrong{target\_ph1=7.5, target\_ph2=None with default configuration12}
+
+{
+\sphinxsetup{VerbatimColor={named}{nbsphinx-code-bg}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+\llap{\color{nbsphinxin}[24]:\,\hspace{\fboxrule}\hspace{\fboxsep}}\PYG{n}{adm1fu}\PYG{o}{.}\PYG{n}{reactor2\PYGZus{}cat}\PYG{p}{(}\PYG{n}{init\PYGZus{}sample}\PYG{p}{,}\PYG{n}{target\PYGZus{}1}\PYG{o}{=}\PYG{n}{target75}\PYG{p}{,}\PYG{n}{verbose}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{off}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}\PYG{o}{*}\PYG{o}{*}\PYG{n}{config12}\PYG{p}{)}
+\end{sphinxVerbatim}
+}
+
+{
+
+\kern-\sphinxverbatimsmallskipamount\kern-\baselineskip
+\kern+\FrameHeightAdjust\kern-\fboxrule
+\vspace{\nbsphinxcodecellspacing}
+
+\sphinxsetup{VerbatimColor={named}{white}}
+\sphinxsetup{VerbatimBorderColor={named}{nbsphinx-code-border}}
+\begin{sphinxVerbatim}[commandchars=\\\{\}]
+verbose: off
+Predicted PH is 4.57781
+\$ADM1F\_EXE -steady -Vliq 340 -t\_resx 1.5 -influent\_file influent\_cur.dat
+Phase 1, after changing cation to 0.197377 kmole/m3, new PH = 7.19608
+
+\$ADM1F\_EXE -steady -Vliq 3400 -t\_resx 700 -influent\_file influent\_cur.dat
+Phase 2, without changing cation, predicted PH = 7.65471
+\end{sphinxVerbatim}
+}
+\subsubsection*{References}
+\subsubsection*{Footnote}
+
+
+\chapter{Join Us on Slack}
+\label{\detokenize{join:join-us-on-slack}}\label{\detokenize{join::doc}}
+\sphinxAtStartPar
+If you have any questions or would like to be a developer, feel free to join our \sphinxhref{http://fastadmmodeling.slack.com}{slack channel}.
 \subsubsection*{References}
 \subsubsection*{Acknowledgements}
 
