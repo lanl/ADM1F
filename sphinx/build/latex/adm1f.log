@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.6)  21 JUN 2021 18:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.6.6)  21 JUN 2021 18:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1084,35 +1084,30 @@ l.6105 ...otebook_parameter-calibration_24_0}.svg}
                                                   
 ? 
 [40]
-<pdftonormal.png, id=372, 1008.76875pt x 362.35374pt>
+<pdftonormal.png, id=372, 505.89pt x 180.675pt>
 File: pdftonormal.png Graphic file (type png)
 <use pdftonormal.png>
 Package pdftex.def Info: pdftonormal.png  used on input line 6162.
-(pdftex.def)             Requested size: 452.97202pt x 162.71487pt.
+(pdftex.def)             Requested size: 452.97328pt x 161.78719pt.
 <phcontrol.png, id=374, 561.09625pt x 417.56pt>
 File: phcontrol.png Graphic file (type png)
 <use phcontrol.png>
 Package pdftex.def Info: phcontrol.png  used on input line 6184.
 (pdftex.def)             Requested size: 420.81259pt x 313.18832pt.
  [41 <./pdftonormal.png>]
-<flow1.png, id=382, 1525.7pt x 1144.275pt>
+<flow1.png, id=382, 723.6636pt x 542.025pt>
 File: flow1.png Graphic file (type png)
 <use flow1.png>
 Package pdftex.def Info: flow1.png  used on input line 6189.
-(pdftex.def)             Requested size: 452.96436pt x 339.7058pt.
- [42 <./phcontrol.png> <./flow1.png>]
-
-LaTeX Warning: Hyper reference `jupyter_notebook/ph-control::doc' on page 43 un
-defined on input line 6195.
-
-[43]
-<jupyter_notebook_ph-control_8_0.png, id=395, 735.74875pt x 349.305pt>
+(pdftex.def)             Requested size: 452.96222pt x 339.28583pt.
+ [42 <./phcontrol.png> <./flow1.png>] [43]
+<jupyter_notebook_ph-control_8_0.png, id=396, 735.74875pt x 349.305pt>
 File: jupyter_notebook_ph-control_8_0.png Graphic file (type png)
 <use jupyter_notebook_ph-control_8_0.png>
 Package pdftex.def Info: jupyter_notebook_ph-control_8_0.png  used on input lin
 e 6355.
 (pdftex.def)             Requested size: 452.98238pt x 215.05847pt.
-<jupyter_notebook_ph-control_11_0.png, id=396, 735.74875pt x 349.305pt>
+<jupyter_notebook_ph-control_11_0.png, id=397, 735.74875pt x 349.305pt>
 File: jupyter_notebook_ph-control_11_0.png Graphic file (type png)
 <use jupyter_notebook_ph-control_11_0.png>
 Package pdftex.def Info: jupyter_notebook_ph-control_11_0.png  used on input li
@@ -1123,7 +1118,7 @@ Underfull \vbox (badness 10000) detected at line 6398
  []
 
 [44 <./jupyter_notebook_ph-control_8_0.png>]
-<jupyter_notebook_ph-control_14_0.png, id=402, 735.74875pt x 349.305pt>
+<jupyter_notebook_ph-control_14_0.png, id=403, 735.74875pt x 349.305pt>
 File: jupyter_notebook_ph-control_14_0.png Graphic file (type png)
 <use jupyter_notebook_ph-control_14_0.png>
 Package pdftex.def Info: jupyter_notebook_ph-control_14_0.png  used on input li
@@ -1142,19 +1137,13 @@ Chapter 6.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package rerunfilecheck Info: File `adm1f.out' has not changed.
 (rerunfilecheck)             Checksum: 971AFBAD76861D32270186D06C58AD43;1534.
  ) 
 Here is how much of TeX's memory you used:
  13723 strings out of 478994
  203071 string characters out of 5858185
- 737343 words of memory out of 5000000
+ 737914 words of memory out of 5000000
  30696 multiletter control sequences out of 15000+600000
  432640 words of font info for 91 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
@@ -1189,10 +1178,10 @@ e1/public/cm-super/sfsx2488.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1
 ublic/cm-super/sfti1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/pub
 lic/cm-super/sftt0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/publi
 c/cm-super/sftt1000.pfb>
-Output written on adm1f.pdf (53 pages, 1371762 bytes).
+Output written on adm1f.pdf (53 pages, 1439535 bytes).
 PDF statistics:
- 552 PDF objects out of 1000 (max. 8388607)
- 425 compressed objects within 5 object streams
+ 553 PDF objects out of 1000 (max. 8388607)
+ 426 compressed objects within 5 object streams
  118 named destinations out of 1000 (max. 500000)
  194 words of extra memory for PDF output out of 10000 (max. 10000000)
 
