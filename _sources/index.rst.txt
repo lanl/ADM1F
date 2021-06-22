@@ -18,8 +18,8 @@ Anaerobic digestion (AD) process converts organic wastes into biogas. Biogas can
 
    compile
    inouts
-#   examples
-#   join
+   examples
+   join
 
 .. rubric:: References
 
