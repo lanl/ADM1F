@@ -8,7 +8,7 @@ The C++ version of the model is computationally more efficient than its Matlab/S
 
 ### ADM1F_SRT (Solid Retention Time) version
 
-The modified version of the ADM1F includes SRT and other modifications described in the [user guide](https://github.com/lanl/ADM1F/blob/main/adm1f_srt_user_guide.pdf).
+The modified version of the ADM1F includes SRT and other modifications described in the [user guide](https://github.com/lanl/ADM1F/blob/main/adm1f_srt_user_guide.pdf) and [documentation](https://elchin.github.io/ADM1F_docs/).
 
 ### Join the Community
 
