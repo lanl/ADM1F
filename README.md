@@ -10,11 +10,19 @@ The C++ version of the model is computationally more efficient than its Matlab/S
 
 The modified version of the ADM1F includes SRT and other modifications described in the [user guide](https://github.com/lanl/ADM1F/blob/main/adm1f_srt_user_guide.pdf).
 
-#### Acknowledgements
-
-The research was supported by the U.S. Department of Energy, Office of Energy Efficiency and Renewable Energy, Bioenergy Technologies Office, under contract DE-AC02-06CH11357.
-
-#### Join Our Slack Channel
+### Join the Community
 
 If you have any questions or would like to be a developer, feel free to join our [slack channel](http://fastadmmodeling.slack.com).
+
+### Documentation
+
+[Documentation](https://elchin.github.io/ADM1F_docs/) is a work in progress, and includes a wide range of the applications.
+
+### License
+
+Please see the [LICENSE](https://github.com/lanl/ADM1F/blob/main/LICENSE).
+
+#### Acknowledgements
+
+*The research was supported by the U.S. Department of Energy, Office of Energy Efficiency and Renewable Energy, Bioenergy Technologies Office, under contract DE-AC02-06CH11357.*
 
