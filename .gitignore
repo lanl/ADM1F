@@ -4,6 +4,7 @@ S generated files #
 .DS_Store?
 ._*
 __MACOSX
+__pycache__
 .Spotlight-V100
 .Trashes
 ehthumbs.db

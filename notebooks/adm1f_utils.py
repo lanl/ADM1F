@@ -28,7 +28,7 @@ def get_output_names():
     '''
     
     # Grab the names of all the outputs
-    fname='../docs/jupyter_notebook/out_sludge.xls'
+    fname='../notebooks/out_sludge.xls'
     check_filename(fname)
     wb = xlrd.open_workbook(fname)
 
@@ -44,7 +44,7 @@ def get_output_names():
 def get_output_header(): # check if we still use it
     # Grab the names of all the outputs
     output_dict = {}
-    wb = xlrd.open_workbook('../docs/jupyter_notebook/out_sludge.xls')
+    wb = xlrd.open_workbook('../notebooks/out_sludge.xls')
     sh = wb.sheet_by_index(1)     #sheet
     for i in range(67):
         cell_value = sh.cell(1,i).value
@@ -67,7 +67,7 @@ def get_param_names():
     '''
 
     # Grab the names of all the parameters
-    fname='../docs/jupyter_notebook/out_sludge.xls'
+    fname='../notebooks/out_sludge.xls'
     check_filename(fname)
     wb = xlrd.open_workbook(fname)
     
@@ -91,7 +91,7 @@ def get_influent_names():
         influent_name : output parameter name
     '''
     influent_dict = {}
-    fname='../docs/jupyter_notebook/out_sludge.xls'
+    fname='../notebooks/out_sludge.xls'
     wb = xlrd.open_workbook(fname)
     sh = wb.sheet_by_index(2)     #sheet
     for i in range(28):
