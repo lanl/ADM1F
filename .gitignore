@@ -9,9 +9,14 @@ __pycache__
 .Trashes
 ehthumbs.db
 Thumbs.db
+simulations/binaryoutput
+simulations/binaryoutput.info
+simulations/influent_cur.dat
+simulations/output_1phase.csv
 
 # ipython notebook and python files #
 ######################
+.info
 .pyc
 .out
 .ipynb_checkpoints/
