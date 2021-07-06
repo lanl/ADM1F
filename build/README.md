@@ -1,7 +1,7 @@
 ## Compile ADM1F
 0. Download or clone the ADM1F model to your local computer:
 
-   `$ git clone https://github.com/wwtmodels/Anaerobic-Digestion-Models.git`
+   `$ git clone https://github.com/lanl/ADM1F.git`
 
    `$ cd ADM1F`
 
